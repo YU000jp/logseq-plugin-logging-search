@@ -1,14 +1,14 @@
-# Logseq Plugin: Draft Notes (Board) 📝
+# Logseq Plugin: Page Search Preview 📝
 
-- This plugin is designed to batch process draft pages using embeds.
-  - It creates multiple pages without page titles.
+- This plugin displays search results using page embedding.
+  - It allows simple browsing of page content while searching.
 
 > [!WARNING]
 This plugin does not work with Logseq db version.
 
 <div align="right">
 
-[English](https://github.com/YU000jp/logseq-plugin-draft-notes/)/[日本語](https://github.com/YU000jp/logseq-plugin-draft-notes/blob/main/readme.ja.md) [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-draft-notes)](https://github.com/YU000jp/logseq-plugin-draft-notes/releases)[![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-draft-notes/total.svg)](https://github.com/YU000jp/logseq-plugin-draft-notes/releases)<!-- Published 2023 --><a href="https://www.buymeacoffee.com/yu000japan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=yu000japan&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
+[English](https://github.com/YU000jp/logseq-plugin-page-search-preview/)/[日本語](https://github.com/YU000jp/logseq-plugin-page-search-preview/blob/main/readme.ja.md) [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-page-search-preview)](https://github.com/YU000jp/logseq-plugin-page-search-preview/releases)[![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-page-search-preview/total.svg)](https://github.com/YU000jp/logseq-plugin-page-search-preview/releases)<!-- Published 2023 --><a href="https://www.buymeacoffee.com/yu000japan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=yu000japan&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
 </div>
 
 ## Feature
@@ -16,18 +16,13 @@ This plugin does not work with Logseq db version.
 - It can be customized in several sizes and styles to display multiple page content.
   > ![image](https://github.com/user-attachments/assets/246bc3cb-f2dc-44ad-a8fa-d688d18df3ef)
 
-## Showcase
-
-- As an ideas list.As a draft, duplicate it down the hierarchy as “ideas/”. To remove a draft from the list, go to the appropriate page and change the title.
-  > ![image](https://github.com/user-attachments/assets/717b7c19-a0a1-4ef5-a5ac-d0a1c34cb826)
-
 ---
 
 ## Getting Started
 
 ### Install from Logseq Marketplace
 
-- Press [`---`] on the top right toolbar to open [`Plugins`]. Select marketplace. Type `Draft` in the search field, select it from the search results and install
+- Press [`---`] on the top right toolbar to open [`Plugins`]. Select marketplace. Type `Search` in the search field, select it from the search results and install
 
 ### Usage
 
@@ -41,7 +36,7 @@ This plugin does not work with Logseq db version.
 
 ## Showcase / Questions / Ideas / Help
 
-> Go to the [Discussions](https://github.com/YU000jp/logseq-plugin-draft-notes/discussions) tab to ask and find this kind of things.
+> Go to the [Discussions](https://github.com/YU000jp/logseq-plugin-page-search-preview/discussions) tab to ask and find this kind of things.
 - Note:
   1. In Wide style, except in edit mode, scrolling occurs horizontally with vertical scrolling.
   1. As with normal embed, it can be edited on the fly. If the display area is too small, open it in the sidebar or zoom in.

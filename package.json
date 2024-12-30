@@ -1,12 +1,12 @@
 {
-    "name": "logseq-plugin-draft-notes",
-    "description": "This plugin is designed to batch process draft pages using embeds.",
-    "repository": "https://github.com/YU000jp/logseq-plugin-draft-notes.git",
+    "name": "logseq-plugin-page-search-preview",
+    "description": "",
+    "repository": "https://github.com/YU000jp/logseq-plugin-page-search-preview.git",
     "author": "YU000jp",
     "license": "MIT",
     "logseq": {
-        "id": "logseq-plugin-draft-notes",
-        "title": "Draft Notes (Board)",
+        "id": "logseq-plugin-page-search-preview",
+        "title": "Page Search Preview",
         "icon": "./icon.svg",
         "main": "./dist/index.html"
     },

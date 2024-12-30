@@ -1,14 +1,14 @@
-# Logseqプラグイン: Draft Notes (Board) 📝
+# Logseqプラグイン: Page Search Preview 📝
 
-- このプラグインは、埋め込みを使用して下書きページを一括で処理するためのものです。
-  - ページタイトルなしで複数のページを作成します。
+- このプラグインは、ページ埋め込みを使用して検索結果を表示します。
+  - 検索しつつ、ページコンテンツの簡易的な閲覧が可能です。
 
 > [!WARNING]
 このプラグインはLogseq dbバージョンでは動作しません。
 
 <div align="right">
 
-[English](https://github.com/YU000jp/logseq-plugin-draft-notes/)/[日本語](https://github.com/YU000jp/logseq-plugin-draft-notes/blob/main/readme.ja.md) [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-draft-notes)](https://github.com/YU000jp/logseq-plugin-draft-notes/releases)[![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-draft-notes/total.svg)](https://github.com/YU000jp/logseq-plugin-draft-notes/releases)<!-- Published 2023 --><a href="https://www.buymeacoffee.com/yu000japan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=yu000japan&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
+[English](https://github.com/YU000jp/logseq-plugin-page-search-preview/)/[日本語](https://github.com/YU000jp/logseq-plugin-page-search-preview/blob/main/readme.ja.md) [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-page-search-preview)](https://github.com/YU000jp/logseq-plugin-page-search-preview/releases)[![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-page-search-preview/total.svg)](https://github.com/YU000jp/logseq-plugin-page-search-preview/releases)<!-- Published 2023 --><a href="https://www.buymeacoffee.com/yu000japan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=yu000japan&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
 </div>
 
 ## 機能
@@ -16,18 +16,13 @@
 - 複数のページコンテンツを表示するために、いくつかのサイズとスタイルでカスタマイズできます。
   > ![image](https://github.com/user-attachments/assets/2463efad-ff79-45d6-94e4-742a49fec516)
 
-## ショーケース
-
-- アイデアリストとして。下書きとして「アイデア/」のように階層下に複製します。下書きをリストから外すには、該当するページに移動し、タイトルを変更します。
-  > ![image](https://github.com/user-attachments/assets/6d299a2d-6e52-44c3-9a50-06bebe977bbb)
-
 ---
 
 ## はじめに
 
 ### Logseqマーケットプレイスからインストール
 
-- 右上のツールバーの[`---`]を押して[`プラグイン`]を開きます。マーケットプレイスを選択します。検索フィールドに`Draft`と入力し、検索結果から選択してインストールします。
+- 右上のツールバーの[`---`]を押して[`プラグイン`]を開きます。マーケットプレイスを選択します。検索フィールドに`Search`と入力し、検索結果から選択してインストールします。
 
 ### 使用方法
 
@@ -41,7 +36,7 @@
 
 ## ショーケース / 質問 / アイデア / ヘルプ
 
-> [Discussions](https://github.com/YU000jp/logseq-plugin-draft-notes/discussions)タブに移動して、このようなことを尋ねたり見つけたりしてください。
+> [Discussions](https://github.com/YU000jp/logseq-plugin-page-search-preview/discussions)タブに移動して、このようなことを尋ねたり見つけたりしてください。
 - 注意:
   1. ワイドスタイルでは、編集モードを除いて、垂直スクロールとともに水平スクロールが発生します。
   1. 通常の埋め込みと同様に、その場で編集できます。表示エリアが小さすぎる場合は、サイドバーで開くか、ズームインしてください。
