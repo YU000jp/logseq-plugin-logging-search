@@ -42,5 +42,15 @@
   "Max number of embed to display": "Maximálny počet vložených položiek na zobrazenie",
   "The number of embeds to display.": "Počet vložených položiek, ktoré sa majú zobraziť.",
   "It affects the display performance.": "Ovplyvňuje výkon displeja.",
-  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "V režime prepojených odkazov je obmedzená na maximálne 8 bez ohľadu na toto nastavenie."
+  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "V režime prepojených odkazov je obmedzená na maximálne 8 bez ohľadu na toto nastavenie.",
+  "Search keyword": "Kľúčové slovo vyhľadávania",
+  "Recent history (embed view)": "Nedávna história (vložené zobrazenie)",
+  "Favorites (embed view)": "Obľúbené položky (vložené zobrazenie)",
+  "Found in.": "Nájdené v.",
+  "No recent pages": "Žiadne nedávne stránky",
+  "No favorites": "Žiadne obľúbené",
+  "List of search words for input correction": "Zoznam hľadaných slov na opravu vstupu",
+  "When you execute a search, the search word is added here and up to 12 are retained. It is separated by line breaks.": "Keď vykonáte vyhľadávanie, sem sa pridá hľadané slovo a zachová sa až 12 hľadaných slov. Je oddelený zalomením riadkov.",
+  "Show linked blocks.": "Zobraziť prepojené bloky.",
+  "A query that displays blocks that match words.": "Dotaz, ktorý zobrazuje bloky, ktoré zodpovedajú slovám."
 }

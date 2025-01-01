@@ -13,9 +13,7 @@ export const generateEmbed = async (
   currentGraphName: string,
   flag?: { force?: boolean },
 ) => {
-  const limit = mode === "references" ?
-    8
-    : logseq.settings![currentGraphName + "count"] as number || 30
+  const limit = logseq.settings![currentGraphName + "count"] as number || 30
 
   //  console.log("generateEmbed", value, pageName, blocks, flag)
   // ブロックの編集モードを終了
@@ -80,10 +78,7 @@ const createBatch = async (
   if (mode === "Recent history" || mode === "Favorites") {
     // 通知しない
   } else // 件数通知
-    logseq.UI.showMsg(
-      t("Found") + " : " + array.length.toString() + " " + t("pages") + "\n" + (mode === "Page search (page-embed)" ? // embedの場合はlimitの件数を表示
-        (t("Limit (by user config)") + " : " + limit.toString() + " " + t("pages"))
-        : ""))
+    logseq.UI.showMsg(t("Found in.") + " : " + array.length.toString() + " " + t("pages"))
 
   const batch: IBatchBlock[] = []
 

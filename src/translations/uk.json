@@ -42,5 +42,15 @@
   "Max number of embed to display": "Максимальна кількість вбудовувань для відображення",
   "The number of embeds to display.": "Кількість вбудованих для відображення.",
   "It affects the display performance.": "Це впливає на продуктивність дисплея.",
-  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "У режимі Linked References він обмежений максимум 8 незалежно від цього налаштування."
+  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "У режимі Linked References він обмежений максимум 8 незалежно від цього налаштування.",
+  "Search keyword": "Пошукове ключове слово",
+  "Recent history (embed view)": "Нещодавня історія (режим вбудовування)",
+  "Favorites (embed view)": "Вибране (режим вбудовування)",
+  "Found in.": "Знайдено в.",
+  "No recent pages": "Немає свіжих сторінок",
+  "No favorites": "Без обраного",
+  "List of search words for input correction": "Список пошукових слів для корекції введення",
+  "When you execute a search, the search word is added here and up to 12 are retained. It is separated by line breaks.": "Коли ви виконуєте пошук, пошукове слово додається сюди, і зберігається до 12. Він відокремлюється розривами рядків.",
+  "Show linked blocks.": "Показувати зв'язані блоки.",
+  "A query that displays blocks that match words.": "Запит, який відображає блоки, що відповідають словам."
 }

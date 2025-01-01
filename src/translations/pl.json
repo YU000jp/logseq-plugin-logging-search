@@ -42,5 +42,15 @@
   "Max number of embed to display": "Maksymalna liczba elementów osadzonych do wyświetlenia",
   "The number of embeds to display.": "Liczba elementów osadzonych do wyświetlenia.",
   "It affects the display performance.": "Wpływa to na wydajność wyświetlania.",
-  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "W trybie Odnośniki połączone jest ograniczona do maksymalnej liczby 8, niezależnie od tego ustawienia."
+  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "W trybie Odnośniki połączone jest ograniczona do maksymalnej liczby 8, niezależnie od tego ustawienia.",
+  "Search keyword": "Szukaj słowa kluczowego",
+  "Recent history (embed view)": "Najnowsza historia (widok osadzania)",
+  "Favorites (embed view)": "Ulubione (widok osadzania)",
+  "Found in.": "Znaleziono w.",
+  "No recent pages": "Brak ostatnich stron",
+  "No favorites": "Brak ulubionych",
+  "List of search words for input correction": "Lista słów kluczowych do korekty danych wejściowych",
+  "When you execute a search, the search word is added here and up to 12 are retained. It is separated by line breaks.": "Podczas wyszukiwania w tym miejscu dodawane jest wyszukiwane słowo i zachowywanych jest maksymalnie 12. Jest on oddzielony znakami końca wiersza.",
+  "Show linked blocks.": "Pokaż połączone bloki.",
+  "A query that displays blocks that match words.": "Zapytanie, które wyświetla bloki pasujące do wyrazów."
 }

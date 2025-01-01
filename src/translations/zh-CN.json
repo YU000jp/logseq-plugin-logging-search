@@ -42,5 +42,15 @@
   "Max number of embed to display": "要显示的最大嵌入数",
   "The number of embeds to display.": "要显示的埋件数。",
   "It affects the display performance.": "它会影响显示性能。",
-  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "在 Linked References 模式下，无论此设置如何，它都限制为最多 8 个。"
+  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "在 Linked References 模式下，无论此设置如何，它都限制为最多 8 个。",
+  "Search keyword": "搜索关键字",
+  "Recent history (embed view)": "最近的历史记录（嵌入视图）",
+  "Favorites (embed view)": "收藏夹（嵌入视图）",
+  "Found in.": "发现于。",
+  "No recent pages": "没有最近的页面",
+  "No favorites": "没有收藏夹",
+  "List of search words for input correction": "用于输入更正的搜索词列表",
+  "When you execute a search, the search word is added here and up to 12 are retained. It is separated by line breaks.": "执行搜索时，搜索词将在此处添加，最多保留 12 个。它由换行符分隔。",
+  "Show linked blocks.": "显示链接的块。",
+  "A query that displays blocks that match words.": "显示与单词匹配的块的查询。"
 }

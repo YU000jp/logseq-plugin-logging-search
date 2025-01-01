@@ -42,5 +42,15 @@
   "Max number of embed to display": "Jumlah maksimum penyematan yang akan ditampilkan",
   "The number of embeds to display.": "Jumlah penyematan yang akan ditampilkan.",
   "It affects the display performance.": "Ini mempengaruhi kinerja tampilan.",
-  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "Dalam mode Referensi Tertaut, ini dibatasi hingga maksimum 8 terlepas dari pengaturan ini."
+  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "Dalam mode Referensi Tertaut, ini dibatasi hingga maksimum 8 terlepas dari pengaturan ini.",
+  "Search keyword": "Kata kunci pencarian",
+  "Recent history (embed view)": "Riwayat terbaru (tampilan sematan)",
+  "Favorites (embed view)": "Favorit (tampilan sematan)",
+  "Found in.": "Ditemukan di.",
+  "No recent pages": "Tidak ada halaman terbaru",
+  "No favorites": "Tidak ada favorit",
+  "List of search words for input correction": "Daftar kata pencarian untuk koreksi input",
+  "When you execute a search, the search word is added here and up to 12 are retained. It is separated by line breaks.": "Saat Anda menjalankan pencarian, kata pencarian ditambahkan di sini dan hingga 12 dipertahankan. Itu dipisahkan oleh jeda baris.",
+  "Show linked blocks.": "Tampilkan blok yang ditautkan.",
+  "A query that displays blocks that match words.": "Kueri yang menampilkan blok yang cocok dengan kata."
 }

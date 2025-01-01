@@ -42,5 +42,15 @@
   "Max number of embed to display": "Максимальное количество встраиваемых объектов для отображения",
   "The number of embeds to display.": "Количество встраиваемых объектов для отображения.",
   "It affects the display performance.": "Это влияет на производительность дисплея.",
-  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "В режиме «Связанные ссылки» максимальное количество ссылок ограничено 8 независимо от этой настройки."
+  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "В режиме «Связанные ссылки» максимальное количество ссылок ограничено 8 независимо от этой настройки.",
+  "Search keyword": "Ключевое слово для поиска",
+  "Recent history (embed view)": "Недавняя история (вид для встраивания)",
+  "Favorites (embed view)": "Избранное (вид встраивания)",
+  "Found in.": "Найдено в.",
+  "No recent pages": "Нет свежих страниц",
+  "No favorites": "Нет избранного",
+  "List of search words for input correction": "Список поисковых слов для коррекции ввода",
+  "When you execute a search, the search word is added here and up to 12 are retained. It is separated by line breaks.": "Когда вы выполняете поиск, сюда добавляется искомое слово, и сохраняется до 12 слов. Он разделен переносами строк.",
+  "Show linked blocks.": "Показать связанные блоки.",
+  "A query that displays blocks that match words.": "Запрос, в котором отображаются блоки, соответствующие словам."
 }

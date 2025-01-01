@@ -42,5 +42,15 @@
   "Max number of embed to display": "표시할 최대 삽입 수",
   "The number of embeds to display.": "표시할 임베드의 수입니다.",
   "It affects the display performance.": "디스플레이 성능에 영향을 미칩니다.",
-  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "연결된 참조 모드에서는 이 설정에 관계없이 최대 8개로 제한됩니다."
+  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "연결된 참조 모드에서는 이 설정에 관계없이 최대 8개로 제한됩니다.",
+  "Search keyword": "검색 키워드",
+  "Recent history (embed view)": "최근 기록(포함 보기)",
+  "Favorites (embed view)": "즐겨찾기(포함 보기)",
+  "Found in.": "에서 찾을 수 있습니다.",
+  "No recent pages": "최근 페이지 없음",
+  "No favorites": "즐겨찾기 없음",
+  "List of search words for input correction": "입력 수정을 위한 검색어 목록",
+  "When you execute a search, the search word is added here and up to 12 are retained. It is separated by line breaks.": "검색을 실행하면 검색 단어가 여기에 추가되고 최대 12개까지 유지됩니다. 줄 바꿈으로 구분됩니다.",
+  "Show linked blocks.": "연결된 블록을 표시합니다.",
+  "A query that displays blocks that match words.": "단어와 일치하는 블록을 표시하는 쿼리입니다."
 }

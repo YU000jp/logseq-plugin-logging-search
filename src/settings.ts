@@ -12,7 +12,7 @@ export const modeList = () => [
     {
         value: "Full text search",
         translate: t("Full text search"),
-        description: t("A query that displays the content of pages that match a word.")
+        description: t("A query that displays blocks that match words.") + " " + t("(Useful for logging.)")
     },
     {
         value: "Page search (page-embed)",
@@ -27,7 +27,7 @@ export const modeList = () => [
     {
         value: "Related Pages References",
         translate: t("Related Pages References"),
-        description: t("A query to search for related pages.") + " " + t("(Useful for logging.)")
+        description: t("A query to search for related pages.") + " " + t("Show linked blocks.")
     },
 ]
 
@@ -52,17 +52,17 @@ export const settingsTemplate = (currentGraphName: string): SettingSchemaDesc[] 
         // コンテンツのモード選択
         title: t("Content mode selection"),
         // ページのコンテンツを表示するモードを選択します。
-        // full text search: 単語にマッチするページのコンテンツを表示するクエリー。
+        // full text search: 単語にマッチするブロックを表示するクエリー。(ロギングに便利)
         // Page search (page-embed): 各関連ページコンテンツをembedで表示します。
         // Page search (list only): 関連ページのリストを表示します。(必ずサイドバーで開かれる)
-        // related Pages References: 関連ページのリファレンスを表示する単一のクエリー。(ログとして役立つ)
+        // related Pages References: 関連ページのリファレンスを表示する単一のクエリー。
         description: `
 
         ${t("Select the mode to display the content of the page.")}
-        ${t("Full text search")}: ${t("A query that displays the content of pages that match a word.")}
+        ${t("Full text search")}: ${t("A query that displays blocks that match words.")} ${t("(Useful for logging.)")}
         ${t("Page search (page-embed)")}: ${t("Displays the content of each related page with embed.")}
         ${t("Page search (list only)")}: ${t("Displays a list of related pages.")}
-        ${t("Related Pages References")}: ${t("A query to search for related pages.")}
+        ${t("Related Pages References")}: ${t("A query to search for related pages.")} ${t("Show linked blocks.")}
         `,
         // enumChoices: modeList().map((m) => m.value),
     },
@@ -106,17 +106,17 @@ export const settingsTemplate = (currentGraphName: string): SettingSchemaDesc[] 
         // この設定に関わらず、Lined Referencesモードの場合、最高8に限定されます。
         description: `
         ${t("The number of embeds to display.")} ${t("It affects the display performance.")}
-        ${t("In Linked References mode, it is limited to a maximum of 8 regardless of this setting.")}
         `,
     },
-    { // 検索ワードの入力候補(入力履歴10件) 改行区切り
+    {
         key: currentGraphName + "searchWordDataList",
         type: "string",
         inputAs: "textarea",
         default: "",
-        // 検索ワードの入力候補
-        title: t("Suggested search word entries"),
-        description: t("Enter up to 12 search words separated by line breaks."),
+        // 検索ワードの入力候補エントリーの修正用
+        title: t("List of search words for input correction"),
+        // 検索を実行すると検索ワードが追加され、最大12件保持されます。改行で区切られています。
+        description: t("When you execute a search, the search word is added here and up to 12 are retained. It is separated by line breaks."),
     },
 ]
 

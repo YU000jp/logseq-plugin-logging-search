@@ -42,5 +42,15 @@
   "Max number of embed to display": "Max. aantal insluitingen om weer te geven",
   "The number of embeds to display.": "Het aantal insluitingen dat moet worden weergegeven.",
   "It affects the display performance.": "Dit heeft invloed op de weergaveprestaties.",
-  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "In de modus Gekoppelde verwijzingen is het beperkt tot een maximum van 8, ongeacht deze instelling."
+  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "In de modus Gekoppelde verwijzingen is het beperkt tot een maximum van 8, ongeacht deze instelling.",
+  "Search keyword": "Trefwoord zoeken",
+  "Recent history (embed view)": "Recente geschiedenis (insluitweergave)",
+  "Favorites (embed view)": "Favorieten (insluitweergave)",
+  "Found in.": "Gevonden in.",
+  "No recent pages": "Geen recente pagina's",
+  "No favorites": "Geen favorieten",
+  "List of search words for input correction": "Lijst met zoekwoorden voor invoercorrectie",
+  "When you execute a search, the search word is added here and up to 12 are retained. It is separated by line breaks.": "Wanneer u een zoekopdracht uitvoert, wordt hier het zoekwoord toegevoegd en blijven er maximaal 12 behouden. Het wordt gescheiden door regeleinden.",
+  "Show linked blocks.": "Toon gekoppelde blokken.",
+  "A query that displays blocks that match words.": "Een query waarin blokken worden weergegeven die overeenkomen met woorden."
 }

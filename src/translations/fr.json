@@ -42,5 +42,15 @@
   "Max number of embed to display": "Nombre maximum d’embed à afficher",
   "The number of embeds to display.": "Le nombre d’intégrations à afficher.",
   "It affects the display performance.": "Cela affecte les performances d’affichage.",
-  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "En mode Références liées, il est limité à un maximum de 8, quel que soit ce paramètre."
+  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "En mode Références liées, il est limité à un maximum de 8, quel que soit ce paramètre.",
+  "Search keyword": "Mot-clé de recherche",
+  "Recent history (embed view)": "Historique récent (vue intégrée)",
+  "Favorites (embed view)": "Favoris (vue intégrée)",
+  "Found in.": "Trouvé dans.",
+  "No recent pages": "Pas de pages récentes",
+  "No favorites": "Aucun favori",
+  "List of search words for input correction": "Liste des mots recherchés pour la correction de saisie",
+  "When you execute a search, the search word is added here and up to 12 are retained. It is separated by line breaks.": "Lorsque vous exécutez une recherche, le mot recherché est ajouté ici et jusqu’à 12 sont conservés. Il est séparé par des sauts de ligne.",
+  "Show linked blocks.": "Afficher les blocs liés.",
+  "A query that displays blocks that match words.": "Requête qui affiche des blocs qui correspondent à des mots."
 }

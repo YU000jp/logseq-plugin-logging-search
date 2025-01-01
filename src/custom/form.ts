@@ -86,7 +86,7 @@ export const addLeftMenuSearchForm = async () => {
       // 選択肢
       const select = document.createElement("select")
       select.id = keyViewSelect
-      select.title = t("Change View")
+      select.title = t("Content mode selection")
       select.className = "form-select"
       const defaultOption = document.createElement("option")
       defaultOption.value = ""
@@ -258,7 +258,7 @@ export const addLeftMenuSearchForm = async () => {
         await resetPage(mainPageTitle)
         // 結果のページをクリア
         logseq.UI.showMsg(
-          t("Clear the results page"),
+          t("Clear the page of search results"),
           "success",
           { timeout: 2200 })
         processingButton = false
@@ -275,7 +275,7 @@ export const addLeftMenuSearchForm = async () => {
       // 履歴ボタン
       const historyButton = document.createElement("button")
       historyButton.textContent = "🕒"
-      historyButton.title = t("Recent history in embed style view")
+      historyButton.title = t("Recent history (embed view)")
       historyButton.style.cursor = "pointer"
       historyButton.className = "ui__button .bg-primary/90 hover:text-primary-foreground text-sm"
       historyButton.addEventListener("click", async (ev: MouseEvent) => {
@@ -291,7 +291,7 @@ export const addLeftMenuSearchForm = async () => {
       // お気に入りボタン
       const favoriteButton = document.createElement("button")
       favoriteButton.textContent = "⭐"
-      favoriteButton.title = t("Favorites in embed style view")
+      favoriteButton.title = t("Favorites (embed view)")
       favoriteButton.style.cursor = "pointer"
       favoriteButton.className = "ui__button .bg-primary/90 hover:text-primary-foreground text-sm"
       favoriteButton.addEventListener("click", async (ev: MouseEvent) => {

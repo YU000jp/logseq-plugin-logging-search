@@ -42,5 +42,15 @@
   "Max number of embed to display": "Görüntülenecek maksimum ekleme sayısı",
   "The number of embeds to display.": "Görüntülenecek yerleştirme sayısı.",
   "It affects the display performance.": "Ekran performansını etkiler.",
-  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "Bağlantılı Referanslar modunda, bu ayardan bağımsız olarak en fazla 8 ile sınırlıdır."
+  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "Bağlantılı Referanslar modunda, bu ayardan bağımsız olarak en fazla 8 ile sınırlıdır.",
+  "Search keyword": "Anahtar kelime ara",
+  "Recent history (embed view)": "Yakın geçmiş (katıştırma görünümü)",
+  "Favorites (embed view)": "Sık Kullanılanlar (katıştırma görünümü)",
+  "Found in.": "Bulundu.",
+  "No recent pages": "Son sayfa yok",
+  "No favorites": "Favori yok",
+  "List of search words for input correction": "Giriş düzeltmesi için arama sözcüklerinin listesi",
+  "When you execute a search, the search word is added here and up to 12 are retained. It is separated by line breaks.": "Bir arama yaptığınızda, arama sözcüğü buraya eklenir ve en fazla 12 sözcük korunur. Satır sonları ile ayrılır.",
+  "Show linked blocks.": "Bağlı blokları göster.",
+  "A query that displays blocks that match words.": "Sözcüklerle eşleşen blokları görüntüleyen bir sorgu."
 }

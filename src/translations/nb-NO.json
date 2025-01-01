@@ -42,5 +42,15 @@
   "Max number of embed to display": "Maksimalt antall innebygging som skal vises",
   "The number of embeds to display.": "Antall innebygginger som skal vises.",
   "It affects the display performance.": "Det påvirker skjermytelsen.",
-  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "I modus for koblede referanser er det begrenset til maksimalt 8 uavhengig av denne innstillingen."
+  "In Linked References mode, it is limited to a maximum of 8 regardless of this setting.": "I modus for koblede referanser er det begrenset til maksimalt 8 uavhengig av denne innstillingen.",
+  "Search keyword": "Søkeord",
+  "Recent history (embed view)": "Nylig historikk (innebyggingsvisning)",
+  "Favorites (embed view)": "Favoritter (innebyggingsvisning)",
+  "Found in.": "Funnet i.",
+  "No recent pages": "Ingen nylige sider",
+  "No favorites": "Ingen favoritter",
+  "List of search words for input correction": "Liste over søkeord for korreksjon av inndata",
+  "When you execute a search, the search word is added here and up to 12 are retained. It is separated by line breaks.": "Når du utfører et søk, legges søkeordet til her og opptil 12 beholdes. Den er atskilt med linjeskift.",
+  "Show linked blocks.": "Vis koblede blokker.",
+  "A query that displays blocks that match words.": "En spørring som viser blokker som samsvarer med ord."
 }
