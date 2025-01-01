@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/YU000jp/logseq-plugin-logging-search/compare/v1.0.0...v1.1.0) (2025-01-01)
+
+
+### Features
+
+* **Add:** favorites and recent (embed style view) ([baba9a8](https://github.com/YU000jp/logseq-plugin-logging-search/commit/baba9a81a6a82f4c8c7592536efa02bf5fed96bb))
+
 # 1.0.0 (2025-01-01)
 
 
