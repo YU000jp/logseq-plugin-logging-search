@@ -3,7 +3,7 @@ import { t } from 'logseq-l10n'
 import { checkGraphName, icon, keyLeftMenuSearchForm, keyOnSidebarCheckbox, keyPageBarId, keyRunButton, keySearchInput, keyViewSelect, mainPageTitle } from '..'
 import { updateMainContent } from '../handle'
 import { clearEle } from '../lib'
-import { keySettingsSearchFormDetails, keySettingsViewMode, modeList } from '../settings'
+import { keySettingsSearchFormDetails, keySettingsViewMode, modeList, modeListArray } from '../settings'
 import { resetPage } from './page'
 
 const pageBarScrollTimeout = () => {
@@ -96,10 +96,9 @@ export const addLeftMenuSearchForm = async () => {
       modeList().forEach((m) => {
         const option = document.createElement("option")
         option.value = m.value
-        option.label = m.translate
+        option.label = m.label
         if (logseq.settings![currentGraphName + keySettingsViewMode] === m.value)
           option.selected = true
-        option.title = m.description
         select.appendChild(option)
       })
 
@@ -321,8 +320,8 @@ const saveSearchWord = (currentGraphName: string) => {
       const array = searchWords ? searchWords.split("\n") as string[] : []
       //重複があったら追加しない
       if (searchWords && array.includes(input.value)) return
-      // 12件まで
-      if (array.length >= 12) array.shift()
+      // 30件を超えたら古いものから削除
+      if (array.length >= 31) array.shift()
       array.push(input.value)
       logseq.updateSettings({ [currentGraphName + "searchWordDataList"]: array.join("\n") })
     }
@@ -332,7 +331,7 @@ const saveSearchWord = (currentGraphName: string) => {
 const openPageOrSidebar = (ev: MouseEvent, currentGraphName: string) => {
   setTimeout(async () => {
     if (ev.shiftKey === true // シフトキーが押されている場合
-      || logseq.settings![currentGraphName + keySettingsViewMode] === modeList()[2].value // リストのみの場合
+      || logseq.settings![currentGraphName + keySettingsViewMode] === modeListArray[1] // リストのみの場合
       || logseq.settings![currentGraphName + "openInRightSidebar"] === true) { // チェックボックスがオン場合
       const pageEntity = await logseq.Editor.getPage(mainPageTitle) as { uuid: PageEntity["uuid"] } | null
       if (pageEntity)

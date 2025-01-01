@@ -8,73 +8,28 @@ export const styleList = [
     "Expansion",
 ]
 
-export const modeList = () => [
-    {
-        value: "Full text search",
-        translate: t("Full text search"),
-        description: t("A query that displays blocks that match words.") + " " + t("(Useful for logging.)")
-    },
-    {
-        value: "Page search (page-embed)",
-        translate: t("Page search (page-embed)"),
-        description: t("Displays the content of each related page with embed.")
-    },
-    {
-        value: "Page search (list only)",
-        translate: t("Page search (list only)"),
-        description: t("Displays a list of related pages.")
-    },
-    {
-        value: "Related Pages References",
-        translate: t("Related Pages References"),
-        description: t("A query to search for related pages.") + " " + t("Show linked blocks.")
-    },
+export const modeListArray = [ // 順番確定
+    "All blocks containing the keyword",
+    "Find related pages",
+    "Contents of relevant pages",
+    "All blocks linked to related pages",
 ]
+
+export const modeList = () => modeListArray.map((m) => ({ value: m, label: t(m) }))
 
 /* user setting */
 // https://logseq.github.io/plugins/types/SettingSchemaDesc.html
 export const settingsTemplate = (currentGraphName: string): SettingSchemaDesc[] => [
-    // { // 使い方のヘルプ
-    //     key: "help",
-    //     type: "heading",
-    //     // 使い方のヘルプ
-    //     title: t("How to use"),
-    //  description: `
-
-    //     `,
-    //     default: null,
-    // },
     {
         key: currentGraphName + keySettingsViewMode,
         // type: "enum",
         type: "heading",
-        default: "Full text search",
+        default: modeListArray[0],
         // コンテンツのモード選択
         title: t("Content mode selection"),
-        // ページのコンテンツを表示するモードを選択します。
-        // full text search: 単語にマッチするブロックを表示するクエリー。(ロギングに便利)
-        // Page search (page-embed): 各関連ページコンテンツをembedで表示します。
-        // Page search (list only): 関連ページのリストを表示します。(必ずサイドバーで開かれる)
-        // related Pages References: 関連ページのリファレンスを表示する単一のクエリー。
-        description: `
-
-        ${t("Select the mode to display the content of the page.")}
-        ${t("Full text search")}: ${t("A query that displays blocks that match words.")} ${t("(Useful for logging.)")}
-        ${t("Page search (page-embed)")}: ${t("Displays the content of each related page with embed.")}
-        ${t("Page search (list only)")}: ${t("Displays a list of related pages.")}
-        ${t("Related Pages References")}: ${t("A query to search for related pages.")} ${t("Show linked blocks.")}
-        `,
+        description: modeList().map((m) => m.label).join("\n"),
         // enumChoices: modeList().map((m) => m.value),
     },
-    // Embed の場合のみ、Unlinked References を表示するかどうか
-    // {
-    //     key: currentGraphName + "embedUnlinkedReferences",
-    //     type: "boolean",
-    //     default: true,
-    //     title: t("Display Unlinked References for Embed mode"),
-    //     // Embed モードの場合、Unlinked References を表示します。
-    //     description: t("Enable / Disable"),
-    // },
     { // Embed の場合のみ、ページコンテンツが存在しないものを除外する
         key: currentGraphName + "embedExcludeNoContent",
         type: "boolean",
@@ -115,8 +70,8 @@ export const settingsTemplate = (currentGraphName: string): SettingSchemaDesc[] 
         default: "",
         // 検索ワードの入力候補エントリーの修正用
         title: t("List of search words for input correction"),
-        // 検索を実行すると検索ワードが追加され、最大12件保持されます。改行で区切られています。
-        description: t("When you execute a search, the search word is added here and up to 12 are retained. It is separated by line breaks."),
+        // 検索を実行すると検索ワードが追加され、最大30件保持されます。改行で区切られています。
+        description: t("When you execute a search, the search word is added here and up to 30 are retained. It is separated by line breaks."),
     },
 ]
 
