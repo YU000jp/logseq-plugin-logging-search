@@ -1,6 +1,6 @@
-import '@logseq/libs'; //https://plugins-doc.logseq.com/
+import '@logseq/libs' //https://plugins-doc.logseq.com/
 import { AppGraphInfo, LSPluginBaseInfo } from '@logseq/libs/dist/LSPlugin.user'
-import { setup as l10nSetup } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
+import { setup as l10nSetup } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
 import { addLeftMenuSearchForm } from './custom/form'
 import { resetPage } from './custom/page'
 import { getUuidFromPageName } from './embed/query/advancedQuery'
@@ -99,6 +99,8 @@ const main = async () => {
   // メインページが存在したら削除する
   if (await getUuidFromPageName(mainPageTitle) as { uuid: string }[] | null)
     resetPage(mainPageTitle)
+  else
+    await logseq.Editor.createPage(mainPageTitle, "", { redirect: false, createFirstBlock: true })
 
   // 専用メニューボタンを追加
   AddMenuButton()
