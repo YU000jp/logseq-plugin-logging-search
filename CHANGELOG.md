@@ -1,3 +1,10 @@
+# 1.0.0 (2025-01-01)
+
+
+### Features
+
+* init ([52fef34](https://github.com/YU000jp/logseq-plugin-logging-search/commit/52fef344e09470f7ed0dba6067bd4deb6df8aa57))
+
 # [1.2.0](https://github.com/YU000jp/logseq-plugin-draft-notes/compare/v1.1.2...v1.2.0) (2024-12-29)
 
 
