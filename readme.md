@@ -1,4 +1,4 @@
-# Logseq Plugin: Logging Search 📝
+# Logseq Plugin: Logging Search 🔎
 
 - This plugin displays search results using query or page embedding.
   - The search function in Logseq core cannot display blocks. Use the query feature to overcome this.
