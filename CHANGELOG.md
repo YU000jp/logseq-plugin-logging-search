@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/YU000jp/logseq-plugin-logging-search/compare/v1.1.0...v1.2.0) (2025-01-01)
+
+
+### Bug Fixes
+
+* Translation corrections ([280652c](https://github.com/YU000jp/logseq-plugin-logging-search/commit/280652ce2aed3275ed200bc14060b774f96e40fe))
+
+
+### Features
+
+* **Add:** search word suggest / refactor ([fbe527c](https://github.com/YU000jp/logseq-plugin-logging-search/commit/fbe527cf6b982731ce90897e00943917955bf5a1))
+
 # [1.1.0](https://github.com/YU000jp/logseq-plugin-logging-search/compare/v1.0.0...v1.1.0) (2025-01-01)
 
 
