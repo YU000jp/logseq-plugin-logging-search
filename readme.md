@@ -42,10 +42,12 @@ This plugin does not work with Logseq db version.
 ## Showcase / Questions / Ideas / Help
 
 > Go to the [Discussions](https://github.com/YU000jp/logseq-plugin-logging-search/discussions) tab to ask and find this kind of things.
+1. 
 1. Currently, search terms are matched case-sensitive and space-sensitive.
 1. In embed mode, it can be displayed in card tile style.
    > ![image](https://github.com/user-attachments/assets/671fd65c-ed02-4b15-8bbc-c8fa1757b84b)
 1. As with normal embed, it can be edited on the fly. If the display area is too small, open it in the sidebar or zoom in.
+1. When this plugin is turned on, the “Logging-Search-Plugin” page is generated. This will be restored even if you delete it.
 1. This plugin still has room for improvement. Please let me know if you encounter any issues or have any ideas for enhancement.
 1. This plugin relies on Logseq's DOM (Document Object Model) structure. If the DOM structure changes due to a Logseq version update, styles may not be applied. We will adjust the CSS to deal with it. If you notice something, please raise an issue.
 
