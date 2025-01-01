@@ -29,6 +29,16 @@ export const modeList = () => [
         translate: t("Related Pages References"),
         description: t("A query to search for related pages.") + " " + t("(Useful for logging.)")
     },
+    {
+        value: "Recent history",
+        translate: t("Recent history"),
+        description: t("Recent history in embed style view")
+    },
+    {
+        value: "Favorites",
+        translate: t("Favorites"),
+        description: t("Favorites in embed style view")
+    },
 ]
 
 /* user setting */

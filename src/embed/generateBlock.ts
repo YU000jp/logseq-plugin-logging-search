@@ -40,11 +40,14 @@ export const generateEmbed = async (keyword: string, pageName: string, blocks: {
 
 
 const outputList = async (blocks: { uuid: BlockEntity["uuid"] }[], pageName: string, batch: IBatchBlock[], value: string) => {
-
+  const currentGraphName = await checkGraphName()
   const newBlockEntity = await clearPageBlocks("", blocks, pageName) as { uuid: BlockEntity["uuid"] } | null
   if (newBlockEntity) {
     await logseq.Editor.insertBatchBlock(newBlockEntity.uuid, batch, { before: false, sibling: false })
-    await logseq.Editor.updateBlock(newBlockEntity.uuid, `# ${t("Search result")}: ${value}\n${logseq.settings![await checkGraphName() + keySettingsViewMode]}`) // 先頭行
+    if (logseq.settings![currentGraphName + keySettingsViewMode] === "Recent history" || logseq.settings![currentGraphName + keySettingsViewMode] === "Favorites")
+      await logseq.Editor.updateBlock(newBlockEntity.uuid, `# ${logseq.settings![await checkGraphName() + keySettingsViewMode]}`) // 先頭行
+    else
+      await logseq.Editor.updateBlock(newBlockEntity.uuid, `# ${t("Search result")}: ${value}\n${logseq.settings![await checkGraphName() + keySettingsViewMode]}`) // 先頭行
     logseq.Editor.exitEditingMode(false)
   }
 }
@@ -62,11 +65,13 @@ const createBatch = async (
     .sort((a, b) => a.split("/").length - b.split("/").length)
 
   // console.log(array)
-  // 件数通知
-  logseq.UI.showMsg(
-    t("Found") + " : " + array.length.toString() + " " + t("pages") + "\n" + (logseq.settings![currentGraphName + keySettingsViewMode] === "Page search (page-embed)" ? // embedの場合はlimitの件数を表示
-      (t("Limit (by user config)") + " : " + limit.toString() + " " + t("pages"))
-      : ""))
+  if (logseq.settings![currentGraphName + keySettingsViewMode] === "Recent history" || logseq.settings![currentGraphName + keySettingsViewMode] === "Favorites") {
+    // 通知しない
+  } else // 件数通知
+    logseq.UI.showMsg(
+      t("Found") + " : " + array.length.toString() + " " + t("pages") + "\n" + (logseq.settings![currentGraphName + keySettingsViewMode] === "Page search (page-embed)" ? // embedの場合はlimitの件数を表示
+        (t("Limit (by user config)") + " : " + limit.toString() + " " + t("pages"))
+        : ""))
 
   const batch: IBatchBlock[] = []
 
@@ -170,6 +175,46 @@ const createBatch = async (
         // (and [[ページ名]] [[ページ名]] [[ページ名]])の形式で表示
         content: `{{query (or ${array.map(page => `[[${page}]]`).join(" ")})}}`, //ひとつのクエリーで複数のページを検索
       })
+      break
+    case "Recent history":
+      logseq.updateSettings({
+        [currentGraphName + keySettingsPageStyle]: "Tile"
+      })
+      const recentList = await logseq.App.getCurrentGraphRecent() as string[] | null
+      if (recentList) {
+        let count = limit
+        for (const pageName of recentList) {
+          if (count <= 0) break
+          count--
+          batch.push({
+            content: `{{embed [[${pageName}]]}}`, // embedを設置
+          })
+        }
+      } else
+        // ペジがない場合
+        batch.push({
+          content: t("No recent pages"),
+        })
+      break
+    case "Favorites":
+      logseq.updateSettings({
+        [currentGraphName + keySettingsPageStyle]: "Tile"
+      })
+      const favoriteList = await logseq.App.getCurrentGraphFavorites() as string[] | null
+      if (favoriteList) {
+        let count = limit
+        for (const pageName of favoriteList) {
+          if (count <= 0) break
+          count--
+          batch.push({
+            content: `{{embed [[${pageName}]]}}`, // embedを設置
+          })
+        }
+      } else
+        // ペジがない場合
+        batch.push({
+          content: t("No favorites"),
+        })
       break
     default: // エラー
       break

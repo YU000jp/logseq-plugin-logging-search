@@ -1,8 +1,7 @@
 import { BlockEntity } from '@logseq/libs/dist/LSPlugin.user'
 import { t } from 'logseq-l10n'
-import { keyCloseButton, keyPageBarId, keySearchInput, keySettingsButton, keyToggleButton, mainPageTitle, mainPageTitleLower } from '.'
+import { checkGraphName, keyCloseButton, keyPageBarId, keySettingsButton, keyToggleButton, mainPageTitle, mainPageTitleLower } from '.'
 import { resetPageBlocks } from './custom/page'
-import { checkGraphName } from '.'
 import { generateEmbed } from './embed/generateBlock'
 
 // ページを開いたとき

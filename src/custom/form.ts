@@ -7,14 +7,18 @@ import { keySettingsSearchFormDetails, keySettingsViewMode, modeList } from '../
 import { resetPage } from './page'
 
 export const submit = async () => {
+  const currentGraphName = await checkGraphName()
   const input = parent.document.getElementById(keySearchInput) as HTMLInputElement | null // 検索ワードの入力欄
   if (input && input.value !== "") {
     // 検索ワードを設定に保存
-    logseq.updateSettings({ [await checkGraphName() + "searchWord"]: input.value })
+    logseq.updateSettings({ [currentGraphName + "searchWord"]: input.value })
     // ページ内容の更新をおこなう
     // console.log("input.value", input.value)
     await updateMainContent(input.value, { force: true }) // 検索ワード
-    await logseq.UI.showMsg("'" + input.value + "'\n\n" + t("Search"), "success", { timeout: 2200 })
+    if (logseq.settings![currentGraphName + keySettingsViewMode] === "Recent history" || logseq.settings![currentGraphName + keySettingsViewMode] === "Favorites") {
+      // 通知しない
+    } else
+      await logseq.UI.showMsg("'" + input.value + "'\n\n" + t("Search"), "success", { timeout: 2200 })
 
     setTimeout(async () => {
       await logseq.Editor.exitEditingMode(false)
@@ -164,7 +168,7 @@ export const addLeftMenuSearchForm = async () => {
       checkbox.className = "form-checkbox"
       checkbox.title = t("Open in right sidebar")
       checkbox.style.cursor = "pointer"
-      checkbox.checked = logseq.settings![currentGraphName + "openInRightSidebar"] as boolean || false
+      checkbox.checked = logseq.settings![currentGraphName + "openInRightSidebar"] as boolean || true
       checkbox.addEventListener("change", () => {
         logseq.updateSettings({ [currentGraphName + "openInRightSidebar"]: checkbox.checked })
       })
@@ -215,7 +219,46 @@ export const addLeftMenuSearchForm = async () => {
       containerSubmit.appendChild(clearButton)
       containerSubmit.appendChild(submitButton)
 
+      // コンテナ
+      const underContainer = document.createElement("div")
+      underContainer.style.display = "flex"
+      underContainer.style.alignItems = "center"
+      underContainer.style.gap = "0.5em"
+      // 履歴ボタン
+      const historyButton = document.createElement("button")
+      historyButton.textContent = "🕒"
+      historyButton.title = t("Recent history")
+      historyButton.style.cursor = "pointer"
+      historyButton.className = "ui__button .bg-primary/90 hover:text-primary-foreground text-sm"
+      historyButton.addEventListener("click", async (ev: MouseEvent) => {
+        ev.preventDefault()
+        if (processingButton === true) return
+        processingButton = true
+        setTimeout(() => processingButton = false, 100)
+        select.value = "Recent history"
+        setTimeout(() => submitButton.click(), 10)
+        processingButton = false
+      })
+      underContainer.appendChild(historyButton)
+      // お気に入りボタン
+      const favoriteButton = document.createElement("button")
+      favoriteButton.textContent = "⭐"
+      favoriteButton.title = t("Favorites")
+      favoriteButton.style.cursor = "pointer"
+      favoriteButton.className = "ui__button .bg-primary/90 hover:text-primary-foreground text-sm"
+      favoriteButton.addEventListener("click", async (ev: MouseEvent) => {
+        ev.preventDefault()
+        if (processingButton === true) return
+        processingButton = true
+        setTimeout(() => processingButton = false, 100)
+        select.value = "Favorites"
+        setTimeout(() => submitButton.click(), 10)
+        processingButton = false
+      })
+      underContainer.appendChild(favoriteButton)
+
       details.appendChild(containerSubmit)
+      details.appendChild(underContainer)
       leftSidebarNavContentsElement.appendChild(details)
     }
   }
