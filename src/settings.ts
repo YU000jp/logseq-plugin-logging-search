@@ -46,7 +46,8 @@ export const settingsTemplate = (currentGraphName: string): SettingSchemaDesc[] 
     // },
     {
         key: currentGraphName + keySettingsViewMode,
-        type: "enum",
+        // type: "enum",
+        type: "heading",
         default: "Full text search",
         // コンテンツのモード選択
         title: t("Content mode selection"),
@@ -63,7 +64,7 @@ export const settingsTemplate = (currentGraphName: string): SettingSchemaDesc[] 
         ${t("Page search (list only)")}: ${t("Displays a list of related pages.")}
         ${t("Related Pages References")}: ${t("A query to search for related pages.")}
         `,
-        enumChoices: modeList().map((m) => m.value),
+        // enumChoices: modeList().map((m) => m.value),
     },
     // Embed の場合のみ、Unlinked References を表示するかどうか
     // {
