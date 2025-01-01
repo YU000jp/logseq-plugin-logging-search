@@ -27,6 +27,8 @@ This plugin does not work with Logseq db version.
    > ![image](https://github.com/user-attachments/assets/ac903fd7-5cd3-4b0a-97fb-df3a43fc0967)
 
 2. Search result in the right sidebar or as main page
+   - This plugin generates the block with the query on behalf of the user. It will be quicker than a user can follow the procedure.
+   - The query is valid either as a block-by-block view or as a time-series log in a journal.
    > ![image](https://github.com/user-attachments/assets/ff2210a6-967f-449f-8f51-d90f3938daa9)
 
 ---
