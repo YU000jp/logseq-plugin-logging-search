@@ -1,12 +1,12 @@
 {
-    "name": "logseq-plugin-page-search-preview",
-    "description": "",
-    "repository": "https://github.com/YU000jp/logseq-plugin-page-search-preview.git",
+    "name": "logseq-plugin-logging-search",
+    "description": "This plugin displays search results using query or page embedding.",
+    "repository": "https://github.com/YU000jp/logseq-plugin-logging-search.git",
     "author": "YU000jp",
     "license": "MIT",
     "logseq": {
-        "id": "logseq-plugin-page-search-preview",
-        "title": "Page Search Preview",
+        "id": "logseq-plugin-logging-search",
+        "title": "Logging Search",
         "icon": "./icon.svg",
         "main": "./dist/index.html"
     },
@@ -25,7 +25,7 @@
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/exec": "^6.0.3",
         "@semantic-release/git": "^10.0.1",
-        "@types/node": "^22.10.2",
+        "@types/node": "^22.10.3",
         "conventional-changelog-conventionalcommits": "^8.0.0",
         "cz-conventional-changelog": "^3.3.0",
         "jest": "^29.7.0",

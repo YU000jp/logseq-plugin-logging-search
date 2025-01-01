@@ -8,90 +8,108 @@ export const styleList = [
     "Expansion",
 ]
 
+export const modeList = () => [
+    {
+        value: "Full text search",
+        translate: t("Full text search"),
+        description: t("A query that displays the content of pages that match a word.")
+    },
+    {
+        value: "Page search (page-embed)",
+        translate: t("Page search (page-embed)"),
+        description: t("Displays the content of each related page with embed.")
+    },
+    {
+        value: "Page search (list only)",
+        translate: t("Page search (list only)"),
+        description: t("Displays a list of related pages.")
+    },
+    {
+        value: "Related Pages References",
+        translate: t("Related Pages References"),
+        description: t("A query to search for related pages.") + " " + t("(Useful for logging.)")
+    },
+]
+
 /* user setting */
 // https://logseq.github.io/plugins/types/SettingSchemaDesc.html
-export const settingsTemplate = (currentGraphName: string, draftTitleWord: string): SettingSchemaDesc[] => [
-    { // 使い方のヘルプ
-        key: "help",
-        type: "heading",
-        // 使い方のヘルプ
-        title: t("How to use"),
-        // 下書きページ(ドラフト)をembedで一括で扱うためのプラグインです。
-        // コンテンツが完成したら、ページ名を変更してください。
-        // ドラフトにテンプレートが適用されます。
-        // リストページを開いたときに、各ドラフトが存在しない場合にテンプレートが適用されます。
-        // テンプレートが適用されていないドラフトに、テンプレートを適用するには、そのページを開いて削除し、リストページを開いてください。
-        // ページタイトルにカーソルを合わせると、Logseqコアのツールチップ機能が稼働します。(それが設定でオンになっている場合)
-        // ページタイトルをクリックすると、そのページに移動します。移動してから、ページタイトルを右クリックすると、コンテキストメニューがでてページタイトルの変更や削除がおこなえます。
+export const settingsTemplate = (currentGraphName: string): SettingSchemaDesc[] => [
+    // { // 使い方のヘルプ
+    //     key: "help",
+    //     type: "heading",
+    //     // 使い方のヘルプ
+    //     title: t("How to use"),
+    //  description: `
+
+    //     `,
+    //     default: null,
+    // },
+    {
+        key: currentGraphName + keySettingsViewMode,
+        type: "enum",
+        default: "Full text search",
+        // コンテンツのモード選択
+        title: t("Content mode selection"),
+        // ページのコンテンツを表示するモードを選択します。
+        // full text search: 単語にマッチするページのコンテンツを表示するクエリー。
+        // Page search (page-embed): 各関連ページコンテンツをembedで表示します。
+        // Page search (list only): 関連ページのリストを表示します。(必ずサイドバーで開かれる)
+        // related Pages References: 関連ページのリファレンスを表示する単一のクエリー。(ログとして役立つ)
         description: `
 
-        ${t("This plugin is for handling draft pages in bulk with embeds.")}
-        ${t("When the content is complete, change the page name.")}
-        ${t("The template is applied to draft pages.")}
-        ${t("When you open the list page, if each draft does not exist, the template is applied.")}
-        ${t("To apply the template to a draft that is not yet applied, open the page, delete it, and open the list page.")}
-        ${t("When you hover over the page title, the Logseq core tooltip feature will be activated. (If it is set to on.)")}
-        ${t("Click the page title to go to that page. After moving, right-click the page title to display the context menu and change or delete the page title.")}
+        ${t("Select the mode to display the content of the page.")}
+        ${t("Full text search")}: ${t("A query that displays the content of pages that match a word.")}
+        ${t("Page search (page-embed)")}: ${t("Displays the content of each related page with embed.")}
+        ${t("Page search (list only)")}: ${t("Displays a list of related pages.")}
+        ${t("Related Pages References")}: ${t("A query to search for related pages.")}
         `,
-        default: null,
+        enumChoices: modeList().map((m) => m.value),
     },
-    { // メインページのスタイル
-        key: currentGraphName + keySettingsPageStyle,
-        title: t("Page style"),
+    // Embed の場合のみ、Unlinked References を表示するかどうか
+    // {
+    //     key: currentGraphName + "embedUnlinkedReferences",
+    //     type: "boolean",
+    //     default: true,
+    //     title: t("Display Unlinked References for Embed mode"),
+    //     // Embed モードの場合、Unlinked References を表示します。
+    //     description: t("Enable / Disable"),
+    // },
+    { // Embed の場合のみ、ページコンテンツが存在しないものを除外する
+        key: currentGraphName + "embedExcludeNoContent",
+        type: "boolean",
+        default: true,
+        title: t("Exclude pages with no content for Embed mode"),
+        // Embed モードの場合、ページコンテンツが存在しないものを除外します。
+        description: t("Enable / Disable"),
+    },
+    { // Embed の場合のみ、ページコンテンツの行数が少ないものを除外する
+        key: currentGraphName + "embedExcludeFewLines",
         type: "enum",
-        enumChoices: styleList,
-        default: "Gallery",
-        // Tile: コンテンツ最小限のスタイル
-        // Gallery: 上下左右に配置するスタイル
-        // Wide: 画面を横に広く使うスタイル
-        // Expansion: 下側に展開するスタイル
-        description: `
-        
-        ${t("The Tile style displays content in a minimalist manner.")}
-        ${t("The Gallery style arranges the blocks up, down, left, and right.")}
-        ${t("The Wide style uses the screen horizontally.")}
-        ${t("The Expansion style is a style that expands on the underside.")}
-        `,
+        default: "1",
+        title: t("Exclude pages with few blocks of content for Embed mode"),
+        // Embed モードの場合、ページコンテンツの行数が少ないものを除外します。
+        enumChoices: ["0", "1", "2", "3", "5"],
+        description: t("The number of blocks to exclude."),
+
     },
     {
         key: currentGraphName + "count",
         // 表示するembedの数
-        title: t("Number of embed to display"),
+        title: t("Max number of embed to display"),
         type: "enum",
         enumChoices: [
-            "1", "2", "3", "4", "5", "6", "7", "9", "11", "13", "15", "17", "19",
+            "10", "20", "30", "40", "60", "80", "100",
         ],
-        default: "7",
-        // この数を減らす前に、必要なドラフトはタイトルを変更してください。
-        description: t("The number of embeds to display. Before reducing this number, change the title of the drafts you need."),
-    },
-    {
-        key: currentGraphName + "addLeftMenu",
-        type: "boolean",
-        default: true,
-        // 左メニューバーにボタンを追加して、このプラグインにアクセスできるようにします。
-        title: t("Add a button to the left menu bar to access this plugin"),
-        // ツールバーからもアクセスできます。
-        description: t("Or from the toolbar"),
-    },
-    {
-        key: currentGraphName + "removeDraftFromRecent",
-        type: "boolean",
-        default: true,
-        // 左メニューの履歴リストから各ドラフトを取り除く
-        title: t("Remove each draft from the history list in the left menu"),
-        // 有効 / 無効
-        description: t("Enable / Disable"),
-    },
-    {
-        key: currentGraphName + "draftTitleWord",
-        // ドラフトタイトルの単語
-        title: t("Draft title word"),
-        type: "string",
-        default: (draftTitleWord + "--") || "Draft--",
-        // 下書きページのタイトルに表示される単語です。この単語の後に番号が追加されます。例えば、単語が「Draft--」の場合、下書きページのタイトルは「Draft--1」「Draft--2」となります。
-        description: t("The word that appears in the title of the draft page. The number is added after this word. For example, if the word is 'Draft--', the title of the draft page is 'Draft--1', 'Draft--2', and so on."),
+        default: "30",
+        // このプラグインで表示するembedの数です。表示パフォーマンスに影響します。
+        // この設定に関わらず、Lined Referencesモードの場合、最高8に限定されます。
+        description: `
+        ${t("The number of embeds to display.")} ${t("It affects the display performance.")}
+        ${t("In Linked References mode, it is limited to a maximum of 8 regardless of this setting.")}
+        `,
     },
 ]
 
-export const keySettingsPageStyle = "pageStyle"
+export const keySettingsPageStyle = "-pageStyle"
+export const keySettingsViewMode = "-modeSelect"
+export const keySettingsSearchFormDetails = "-searchFormDetails"

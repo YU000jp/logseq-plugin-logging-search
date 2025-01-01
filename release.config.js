@@ -1,5 +1,5 @@
 
-var PLUGIN_NAME = 'logseq-plugin-page-search-preview'
+var PLUGIN_NAME = 'logseq-plugin-logging-search'
 
 module.exports = {
     branches: ['main'],

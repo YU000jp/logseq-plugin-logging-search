@@ -1,79 +1,72 @@
 import { BlockEntity } from '@logseq/libs/dist/LSPlugin.user'
-import { keyAllDeleteButton, keyCloseButton, keyPageBarId, keyRunButton, keySettingsButton, keyToggleButton, keyToolbar, mainPageTitle, mainPageTitleLower, toolbarIcon } from '.'
-import { handleScrolling } from './scroll'
-import { generateEmbed } from './embed/generateBlock'
 import { t } from 'logseq-l10n'
+import { keyCloseButton, keyPageBarId, keySearchInput, keySettingsButton, keyToggleButton, mainPageTitle, mainPageTitleLower } from '.'
+import { resetPageBlocks } from './custom/page'
+import { checkGraphName } from '.'
+import { generateEmbed } from './embed/generateBlock'
 
-let now = false
 // ページを開いたとき
 let isProcessingRootChanged = false
 
 export const handleRouteChange = async (path: string, template: string) => {
   if (template !== "/page/:name" //ページ以外は除外
-    || isProcessingRootChanged) return
+    || isProcessingRootChanged === true) return
   isProcessingRootChanged = true
   setTimeout(() => isProcessingRootChanged = false, 100)
 
   const pageName = path.replace(/^\/page\//, "")
   if (pageName === mainPageTitle) {
-    now = true
-    await updateMainContent("page")
-    // スクロールを縦ではなく横にする (ホイールイベント)
-    handleScrolling() // Note: 一部スタイルのみで動作させるが、イベントリスナー内で判定している
-  } else
-    if (now = true) {
-      now = false
-      // 必ずHomeに移動してしまうバグがあるためdeletePage()は使えないので、ブロックのみを削除
-      const blockEntities = await logseq.Editor.getPageBlocksTree(mainPageTitle) as BlockEntity[] | null
-      if (blockEntities) {
-        await logseq.Editor.updateBlock(blockEntities[0].uuid, "", {})
-        if (blockEntities[0]) {
-          const children = blockEntities[0].children as BlockEntity[] | undefined
-          if (children)
-            for (const child of children)
-              await logseq.Editor.removeBlock(child.uuid)
+    // 検索結果ページの場合
+    const searchWord = logseq.settings![await checkGraphName() + "searchWord"]
+    // console.log("searchWord", searchWord)
+    if (searchWord !== undefined)
+      await updateMainContent(searchWord as string)
+    else
+      await updateMainContent("", { reset: true })
+  } else {
+    // それ以外のページの場合
 
-        }
-      }
-    }
-}
-
-export const updateMainContent = async (type: "page") => {
-  const blocks = await logseq.Editor.getCurrentPageBlocksTree() as { uuid: BlockEntity["uuid"] }[]
-  if (blocks) {
-    // 全てのブロックを削除
-    for (const block of blocks)
-      await logseq.Editor.removeBlock(block.uuid)
-
-    // メインページの最初のブロックを作成
-    const newBlockEntity = await logseq.Editor.appendBlockInPage(mainPageTitle, "") as { uuid: BlockEntity["uuid"] } | null
-
-    if (newBlockEntity)
-      if (type === "page")
-        await generateEmbed(newBlockEntity.uuid)
+    // 右サイドバーで検索結果ページを開いていない場合、検索結果ページをリセット
+    // #right-sidebar div.sidebar-item-header .page-titleが複数あり、そのtextがmainPageTitleの場合、検索結果ページを開いていると判断できる
+    const pageTitles = parent.document.querySelectorAll("#right-sidebar div.sidebar-item-header div.page-title>span.ui__icon+span") as NodeListOf<HTMLElement>
+    let isSearchPage = false
+    pageTitles.forEach((pageTitle) => {
+      if (pageTitle.textContent === mainPageTitle) isSearchPage = true
+    })
+    if (isSearchPage === false)
+      await updateMainContent("", { reset: true })
   }
+  isProcessingRootChanged = false
 }
 
-export const AddToolbarAndMenuButton = () => {
-  // ツールバーにボタンを追加
-  logseq.App.registerUIItem('toolbar', {
-    key: keyToolbar,
-    template: `
-    <div>
-      <a class="button icon" data-on-click="${keyToolbar}" style="font-size: 18px" title="${mainPageTitle} ${t("plugin")}">${toolbarIcon}</a>
-    </div>
-    `,
-  })
-  // ページバーにボタンを追加
-  logseq.App.registerUIItem('pagebar', {
+let processingUpdateMainContent = false
+export const updateMainContent = async (value: string, flag?: { force?: boolean, reset?: boolean }) => {
+  // console.log("updateMainContent", value, flag)
+  if (processingUpdateMainContent === true) return
+  processingUpdateMainContent = true
+  setTimeout(() => processingUpdateMainContent = false, 400)
+  // console.log("updateMainContent")
+  const blocks = await logseq.Editor.getPageBlocksTree(mainPageTitle) as { uuid: BlockEntity["uuid"] }[]
+  // console.log("blocks", blocks)
+  if (blocks)
+    if (flag && flag.reset) {
+      await resetPageBlocks(blocks, mainPageTitle)
+      // console.log("resetPageBlocks")
+    } else {
+      await generateEmbed(value, mainPageTitle, blocks, flag)
+      // console.log("generateEmbed")
+    }
+  processingUpdateMainContent = false
+}
+
+export const AddMenuButton = () => {
+  logseq.App.registerUIItem('pagebar', { // ページバーにボタンを追加
     key: keyPageBarId,
     template: `
       <div id="${keyPageBarId}" title="${mainPageTitle} ${t("plugin")}">
       <button id="${keyToggleButton}" data-on-click="${keyToggleButton}" title="${t("Change Style")}">🎨</button>
       <button id="${keySettingsButton}" data-on-click="${keySettingsButton}" title="${t("Plugin Settings")}">⚙</button>
-      <button id="${keyRunButton}" data-on-click="${keyRunButton}" title="${t("Update page list.")}">◆ ${t("Reload")}</button>
       <button id="${keyCloseButton}" data-on-click="${keyCloseButton}" title="${t("Press this button when finished.")}">✖ ${t("Close")}</button>
-      <button id="${keyAllDeleteButton}" data-on-click="${keyAllDeleteButton}" title="" style="color:red"><small>${t("All delete")}</small></button>
       </div>
       <style>
       #${keyPageBarId} {

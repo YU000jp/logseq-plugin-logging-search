@@ -1,6 +1,6 @@
-# Logseqプラグイン: Page Search Preview 📝
+# Logseqプラグイン: Logging Search 📝
 
-- このプラグインは、ページ埋め込みを使用して検索結果を表示します。
+- このプラグインは、クエリーとページ埋込(embed)を使用して検索結果を表示します。
   - 検索しつつ、ページコンテンツの簡易的な閲覧が可能です。
 
 > [!WARNING]
@@ -8,7 +8,7 @@
 
 <div align="right">
 
-[English](https://github.com/YU000jp/logseq-plugin-page-search-preview/)/[日本語](https://github.com/YU000jp/logseq-plugin-page-search-preview/blob/main/readme.ja.md) [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-page-search-preview)](https://github.com/YU000jp/logseq-plugin-page-search-preview/releases)[![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-page-search-preview/total.svg)](https://github.com/YU000jp/logseq-plugin-page-search-preview/releases)<!-- Published 2023 --><a href="https://www.buymeacoffee.com/yu000japan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=yu000japan&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
+[English](https://github.com/YU000jp/logseq-plugin-logging-search/)/[日本語](https://github.com/YU000jp/logseq-plugin-logging-search/blob/main/readme.ja.md) [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-logging-search)](https://github.com/YU000jp/logseq-plugin-logging-search/releases)[![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-logging-search/total.svg)](https://github.com/YU000jp/logseq-plugin-logging-search/releases)<!-- Published 2023 --><a href="https://www.buymeacoffee.com/yu000japan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=yu000japan&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
 </div>
 
 ## 機能
@@ -22,7 +22,7 @@
 
 ### Logseqマーケットプレイスからインストール
 
-- 右上のツールバーの[`---`]を押して[`プラグイン`]を開きます。マーケットプレイスを選択します。検索フィールドに`Search`と入力し、検索結果から選択してインストールします。
+- 右上のツールバーの[`---`]を押して[`プラグイン`]を開きます。マーケットプレイスを選択します。検索フィールドに`log`と入力し、検索結果から選択してインストールします。
 
 ### 使用方法
 
@@ -36,7 +36,7 @@
 
 ## ショーケース / 質問 / アイデア / ヘルプ
 
-> [Discussions](https://github.com/YU000jp/logseq-plugin-page-search-preview/discussions)タブに移動して、このようなことを尋ねたり見つけたりしてください。
+> [Discussions](https://github.com/YU000jp/logseq-plugin-logging-search/discussions)タブに移動して、このようなことを尋ねたり見つけたりしてください。
 - 注意:
   1. ワイドスタイルでは、編集モードを除いて、垂直スクロールとともに水平スクロールが発生します。
   1. 通常の埋め込みと同様に、その場で編集できます。表示エリアが小さすぎる場合は、サイドバーで開くか、ズームインしてください。
@@ -46,6 +46,6 @@
 
 ## 先行技術 & クレジット
 
-アイコン > [icooon-mono.com](https://icooon-mono.com/12033-%e7%bd%b2%e5%90%8d%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3/)
+アイコン > [icooon-mono.com](https://icooon-mono.com/11095-%e6%9e%a0%e3%81%a4%e3%81%8d%e3%81%ae%e7%be%bd%e6%a0%b9%e3%83%9a%e3%83%b3%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90/)
 
 製作者 > [@YU000jp](https://github.com/YU000jp)

@@ -1,6 +1,6 @@
-# Logseq Plugin: Page Search Preview 📝
+# Logseq Plugin: Logging Search 📝
 
-- This plugin displays search results using page embedding.
+- This plugin displays search results using query or page embedding.
   - It allows simple browsing of page content while searching.
 
 > [!WARNING]
@@ -8,7 +8,7 @@ This plugin does not work with Logseq db version.
 
 <div align="right">
 
-[English](https://github.com/YU000jp/logseq-plugin-page-search-preview/)/[日本語](https://github.com/YU000jp/logseq-plugin-page-search-preview/blob/main/readme.ja.md) [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-page-search-preview)](https://github.com/YU000jp/logseq-plugin-page-search-preview/releases)[![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-page-search-preview/total.svg)](https://github.com/YU000jp/logseq-plugin-page-search-preview/releases)<!-- Published 2023 --><a href="https://www.buymeacoffee.com/yu000japan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=yu000japan&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
+[English](https://github.com/YU000jp/logseq-plugin-logging-search/)/[日本語](https://github.com/YU000jp/logseq-plugin-logging-search/blob/main/readme.ja.md) [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-logging-search)](https://github.com/YU000jp/logseq-plugin-logging-search/releases)[![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-logging-search/total.svg)](https://github.com/YU000jp/logseq-plugin-logging-search/releases)<!-- Published 2023 --><a href="https://www.buymeacoffee.com/yu000japan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=yu000japan&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
 </div>
 
 ## Feature
@@ -22,7 +22,7 @@ This plugin does not work with Logseq db version.
 
 ### Install from Logseq Marketplace
 
-- Press [`---`] on the top right toolbar to open [`Plugins`]. Select marketplace. Type `Search` in the search field, select it from the search results and install
+- Press [`---`] on the top right toolbar to open [`Plugins`]. Select marketplace. Type `log` in the search field, select it from the search results and install
 
 ### Usage
 
@@ -36,7 +36,7 @@ This plugin does not work with Logseq db version.
 
 ## Showcase / Questions / Ideas / Help
 
-> Go to the [Discussions](https://github.com/YU000jp/logseq-plugin-page-search-preview/discussions) tab to ask and find this kind of things.
+> Go to the [Discussions](https://github.com/YU000jp/logseq-plugin-logging-search/discussions) tab to ask and find this kind of things.
 - Note:
   1. In Wide style, except in edit mode, scrolling occurs horizontally with vertical scrolling.
   1. As with normal embed, it can be edited on the fly. If the display area is too small, open it in the sidebar or zoom in.
@@ -46,6 +46,6 @@ This plugin does not work with Logseq db version.
 
 ## Prior art & Credit
 
-Icon > [icooon-mono.com](https://icooon-mono.com/12033-%e7%bd%b2%e5%90%8d%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3/)
+Icon > [icooon-mono.com](https://icooon-mono.com/11095-%e6%9e%a0%e3%81%a4%e3%81%8d%e3%81%ae%e7%be%bd%e6%a0%b9%e3%83%9a%e3%83%b3%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90/)
 
 Author > [@YU000jp](https://github.com/YU000jp)
