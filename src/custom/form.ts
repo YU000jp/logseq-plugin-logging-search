@@ -6,30 +6,56 @@ import { clearEle } from '../lib'
 import { keySettingsSearchFormDetails, keySettingsViewMode, modeList } from '../settings'
 import { resetPage } from './page'
 
+const pageBarScrollTimeout = () => {
+  setTimeout(async () => {
+    await logseq.Editor.exitEditingMode(false)
+    // 先頭にスクロールする
+    const pageBar = parent.document.getElementById(keyPageBarId) as HTMLElement | null
+    // pageBarの位置までスクロール
+    if (pageBar)
+      pageBar.scrollIntoView({ behavior: "smooth", block: "start" })
+  }, 300)
+}
+
+const openFavorite = async () => {
+  await updateMainContent("", {
+    force: true,
+    favorites: true,
+  }) // 検索ワード
+  pageBarScrollTimeout()
+}
+
+const openRecentHistory = async () => {
+  await updateMainContent("", {
+    force: true,
+    recent: true,
+  }) // 検索ワード
+  pageBarScrollTimeout()
+}
+
 export const submit = async () => {
   const currentGraphName = await checkGraphName()
+
   const input = parent.document.getElementById(keySearchInput) as HTMLInputElement | null // 検索ワードの入力欄
   if (input && input.value !== "") {
     // 検索ワードを設定に保存
     logseq.updateSettings({ [currentGraphName + "searchWord"]: input.value })
     // ページ内容の更新をおこなう
     // console.log("input.value", input.value)
-    await updateMainContent(input.value, { force: true }) // 検索ワード
-    if (logseq.settings![currentGraphName + keySettingsViewMode] === "Recent history" || logseq.settings![currentGraphName + keySettingsViewMode] === "Favorites") {
-      // 通知しない
-    } else
-      await logseq.UI.showMsg("'" + input.value + "'\n\n" + t("Search"), "success", { timeout: 2200 })
 
-    setTimeout(async () => {
-      await logseq.Editor.exitEditingMode(false)
-      // 先頭にスクロールする
-      const pageBar = parent.document.getElementById(keyPageBarId) as HTMLElement | null
-      // pageBarの位置までスクロール
-      if (pageBar)
-        pageBar.scrollIntoView({ behavior: "smooth", block: "start" })
-    }, 300)
+    await updateMainContent(input.value, { force: true }) // 検索ワード
+
+    await logseq.UI.showMsg(
+      `${t("Search result")}: ${input.value} `,
+      "success",
+      { timeout: 2200 })
+
+    pageBarScrollTimeout()
   } else
-    logseq.UI.showMsg(t("Please enter a search word."), "error", { timeout: 2200 })
+    logseq.UI.showMsg(
+      t("Please enter a search word."),
+      "error",
+      { timeout: 2200 })
 }
 
 
@@ -96,18 +122,15 @@ export const addLeftMenuSearchForm = async () => {
         if (select.value !== "")
           logseq.updateSettings({ [currentGraphName + keySettingsViewMode]: select.value })
 
+        // 送信処理
         await submit()
 
-        setTimeout(async () => {
-          if (ev.shiftKey === true // シフトキーが押されている場合
-            || logseq.settings![currentGraphName + keySettingsViewMode] === modeList()[2].value // リストのみの場合
-            || logseq.settings![currentGraphName + "openInRightSidebar"] === true) { // チェックボックスがオン場合
-            const pageEntity = await logseq.Editor.getPage(mainPageTitle) as { uuid: PageEntity["uuid"] } | null
-            if (pageEntity)
-              logseq.Editor.openInRightSidebar(pageEntity.uuid)
-          } else
-            logseq.App.pushState('page', { name: mainPageTitle })// ページを開く
-        }, 500)
+        // ページで開くかサイドバーで開く
+        openPageOrSidebar(ev, currentGraphName)
+
+        // 検索ワードを入力履歴に追加
+        saveSearchWord(currentGraphName)
+
         processingButton = false
       })
 
@@ -133,15 +156,19 @@ export const addLeftMenuSearchForm = async () => {
           if (pageTitleElement)
             input.value = pageTitleElement.textContent || ""
           else
-            logseq.UI.showMsg(t("No page is currently open."), "error", { timeout: 2200 })
+            logseq.UI.showMsg(
+              t("No page is currently open."),
+              "error",
+              { timeout: 2200 })
         }
       })
       containerKeyWordInput.appendChild(currentPageButton)
+
       // 検索ワードの入力欄
       const input = document.createElement("input")
       input.type = "text"
       input.id = keySearchInput
-      input.placeholder = t("Search pages")
+      input.placeholder = t("Search keyword")
       input.className = "form-input hover:text-primary-foreground text-lg"
       input.value = logseq.settings![currentGraphName + "searchWord"] as string || ""
       // mouseoverでフォーカス
@@ -161,6 +188,24 @@ export const addLeftMenuSearchForm = async () => {
         }
       })
       containerKeyWordInput.appendChild(input)
+
+      // inputのdatalist
+      const dataList = document.createElement("datalist")
+      dataList.id = "searchWordDataList"
+      const searchWords = logseq.settings![currentGraphName + "searchWordDataList"] as string// 改行区切りで保存されている
+      if (searchWords !== "") {
+        const array = searchWords.split("\n")
+        if (array) {
+          array.forEach((word) => {
+            const option = document.createElement("option")
+            option.value = word
+            dataList.appendChild(option)
+          })
+        }
+      }
+      input.setAttribute("list", dataList.id)
+      containerKeyWordInput.appendChild(dataList)
+
       // 右サイドバーで開くチェックボックス
       const checkbox = document.createElement("input")
       checkbox.type = "checkbox"
@@ -212,7 +257,10 @@ export const addLeftMenuSearchForm = async () => {
         setTimeout(() => processingButton = false, 100)
         await resetPage(mainPageTitle)
         // 結果のページをクリア
-        logseq.UI.showMsg(t("Clear the results page"), "success", { timeout: 2200 })
+        logseq.UI.showMsg(
+          t("Clear the results page"),
+          "success",
+          { timeout: 2200 })
         processingButton = false
       })
       containerSubmit.appendChild(select)
@@ -227,7 +275,7 @@ export const addLeftMenuSearchForm = async () => {
       // 履歴ボタン
       const historyButton = document.createElement("button")
       historyButton.textContent = "🕒"
-      historyButton.title = t("Recent history")
+      historyButton.title = t("Recent history in embed style view")
       historyButton.style.cursor = "pointer"
       historyButton.className = "ui__button .bg-primary/90 hover:text-primary-foreground text-sm"
       historyButton.addEventListener("click", async (ev: MouseEvent) => {
@@ -235,15 +283,15 @@ export const addLeftMenuSearchForm = async () => {
         if (processingButton === true) return
         processingButton = true
         setTimeout(() => processingButton = false, 100)
-        select.value = "Recent history"
-        setTimeout(() => submitButton.click(), 10)
+        await openRecentHistory()
+        openPageOrSidebar(ev, currentGraphName)
         processingButton = false
       })
       underContainer.appendChild(historyButton)
       // お気に入りボタン
       const favoriteButton = document.createElement("button")
       favoriteButton.textContent = "⭐"
-      favoriteButton.title = t("Favorites")
+      favoriteButton.title = t("Favorites in embed style view")
       favoriteButton.style.cursor = "pointer"
       favoriteButton.className = "ui__button .bg-primary/90 hover:text-primary-foreground text-sm"
       favoriteButton.addEventListener("click", async (ev: MouseEvent) => {
@@ -251,8 +299,8 @@ export const addLeftMenuSearchForm = async () => {
         if (processingButton === true) return
         processingButton = true
         setTimeout(() => processingButton = false, 100)
-        select.value = "Favorites"
-        setTimeout(() => submitButton.click(), 10)
+        await openFavorite()
+        openPageOrSidebar(ev, currentGraphName)
         processingButton = false
       })
       underContainer.appendChild(favoriteButton)
@@ -263,3 +311,35 @@ export const addLeftMenuSearchForm = async () => {
     }
   }
 }
+
+const saveSearchWord = (currentGraphName: string) => {
+  setTimeout(() => {
+    // 検索ワードを入力履歴に追加
+    const input = parent.document.getElementById(keySearchInput) as HTMLInputElement | null // 検索ワードの入力欄
+    if (input) {
+      const searchWords = logseq.settings![currentGraphName + "searchWordDataList"] as string // 改行区切りで保存されている
+      const array = searchWords ? searchWords.split("\n") as string[] : []
+      //重複があったら追加しない
+      if (searchWords && array.includes(input.value)) return
+      // 12件まで
+      if (array.length >= 12) array.shift()
+      array.push(input.value)
+      logseq.updateSettings({ [currentGraphName + "searchWordDataList"]: array.join("\n") })
+    }
+  }, 100)
+}
+
+const openPageOrSidebar = (ev: MouseEvent, currentGraphName: string) => {
+  setTimeout(async () => {
+    if (ev.shiftKey === true // シフトキーが押されている場合
+      || logseq.settings![currentGraphName + keySettingsViewMode] === modeList()[2].value // リストのみの場合
+      || logseq.settings![currentGraphName + "openInRightSidebar"] === true) { // チェックボックスがオン場合
+      const pageEntity = await logseq.Editor.getPage(mainPageTitle) as { uuid: PageEntity["uuid"] } | null
+      if (pageEntity)
+        logseq.Editor.openInRightSidebar(pageEntity.uuid)
+    }
+    else
+      logseq.App.pushState('page', { name: mainPageTitle }) // ページを開く
+  }, 500)
+}
+

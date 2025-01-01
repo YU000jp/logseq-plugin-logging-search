@@ -29,16 +29,6 @@ export const modeList = () => [
         translate: t("Related Pages References"),
         description: t("A query to search for related pages.") + " " + t("(Useful for logging.)")
     },
-    {
-        value: "Recent history",
-        translate: t("Recent history"),
-        description: t("Recent history in embed style view")
-    },
-    {
-        value: "Favorites",
-        translate: t("Favorites"),
-        description: t("Favorites in embed style view")
-    },
 ]
 
 /* user setting */
@@ -118,6 +108,15 @@ export const settingsTemplate = (currentGraphName: string): SettingSchemaDesc[] 
         ${t("The number of embeds to display.")} ${t("It affects the display performance.")}
         ${t("In Linked References mode, it is limited to a maximum of 8 regardless of this setting.")}
         `,
+    },
+    { // 検索ワードの入力候補(入力履歴10件) 改行区切り
+        key: currentGraphName + "searchWordDataList",
+        type: "string",
+        inputAs: "textarea",
+        default: "",
+        // 検索ワードの入力候補
+        title: t("Suggested search word entries"),
+        description: t("Enter up to 12 search words separated by line breaks."),
     },
 ]
 

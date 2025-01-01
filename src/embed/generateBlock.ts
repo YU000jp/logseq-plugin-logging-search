@@ -1,13 +1,19 @@
 import { BlockEntity, IBatchBlock, PageEntity } from "@logseq/libs/dist/LSPlugin"
 import { t } from "logseq-l10n"
-import { checkGraphName } from '..'
 import { clearPageBlocks, resetPageBlocks } from "../custom/page"
-import { keySettingsPageStyle, keySettingsViewMode } from "../settings"
+import { keySettingsPageStyle } from "../settings"
 import { getBlockContentFromPageName, getPageNameListFromKeyword } from './query/advancedQuery'
 
-export const generateEmbed = async (keyword: string, pageName: string, blocks: { uuid: BlockEntity["uuid"] }[], flag?: { force?: boolean }) => {
-  const currentGraphName = await checkGraphName()
-  const limit = logseq.settings![currentGraphName + keySettingsViewMode] === "references" ?
+
+export const generateEmbed = async (
+  keyword: string,
+  pageName: string,
+  blocks: { uuid: BlockEntity["uuid"] }[],
+  mode: string,
+  currentGraphName: string,
+  flag?: { force?: boolean },
+) => {
+  const limit = mode === "references" ?
     8
     : logseq.settings![currentGraphName + "count"] as number || 30
 
@@ -22,10 +28,10 @@ export const generateEmbed = async (keyword: string, pageName: string, blocks: {
   // console.log(pageEntities)
   if (pageEntities && pageEntities.length > 0) {
 
-    const batch: IBatchBlock[] = await createBatch(pageEntities.map((v) => v.name), limit, currentGraphName, keyword)
+    const batch: IBatchBlock[] = await createBatch(pageEntities.map((v) => v.name), limit, currentGraphName, keyword, mode) // ページコンテンツを生成
     //  console.log(batch)
     if (batch.length > 0)
-      await outputList(blocks, pageName, batch, keyword) // ページコンテンツを生成
+      await outputList(blocks, pageName, batch, keyword, mode) // ページコンテンツを生成
     else
       await resetPageBlocks(blocks, pageName)// batchが空の場合
   } else
@@ -39,15 +45,20 @@ export const generateEmbed = async (keyword: string, pageName: string, blocks: {
 
 
 
-const outputList = async (blocks: { uuid: BlockEntity["uuid"] }[], pageName: string, batch: IBatchBlock[], value: string) => {
-  const currentGraphName = await checkGraphName()
+const outputList = async (
+  blocks: { uuid: BlockEntity["uuid"] }[],
+  pageName: string,
+  batch: IBatchBlock[],
+  keyword: string,
+  mode: string,
+) => {
   const newBlockEntity = await clearPageBlocks("", blocks, pageName) as { uuid: BlockEntity["uuid"] } | null
   if (newBlockEntity) {
     await logseq.Editor.insertBatchBlock(newBlockEntity.uuid, batch, { before: false, sibling: false })
-    if (logseq.settings![currentGraphName + keySettingsViewMode] === "Recent history" || logseq.settings![currentGraphName + keySettingsViewMode] === "Favorites")
-      await logseq.Editor.updateBlock(newBlockEntity.uuid, `# ${logseq.settings![await checkGraphName() + keySettingsViewMode]}`) // 先頭行
+    if (mode === "Recent history" || mode === "Favorites")
+      await logseq.Editor.updateBlock(newBlockEntity.uuid, `# ${mode}`) // 先頭行
     else
-      await logseq.Editor.updateBlock(newBlockEntity.uuid, `# ${t("Search result")}: ${value}\n${logseq.settings![await checkGraphName() + keySettingsViewMode]}`) // 先頭行
+      await logseq.Editor.updateBlock(newBlockEntity.uuid, `# ${t("Search result")}: ${keyword}\n${mode}`) // 先頭行
     logseq.Editor.exitEditingMode(false)
   }
 }
@@ -57,7 +68,8 @@ const createBatch = async (
   array: string[],
   limit: number,
   currentGraphName: string,
-  value: string
+  value: string,
+  mode: string,
 ) => {
 
   // 文字数が少ない順にソート (/で区切られていないものをより先にする)
@@ -65,17 +77,17 @@ const createBatch = async (
     .sort((a, b) => a.split("/").length - b.split("/").length)
 
   // console.log(array)
-  if (logseq.settings![currentGraphName + keySettingsViewMode] === "Recent history" || logseq.settings![currentGraphName + keySettingsViewMode] === "Favorites") {
+  if (mode === "Recent history" || mode === "Favorites") {
     // 通知しない
   } else // 件数通知
     logseq.UI.showMsg(
-      t("Found") + " : " + array.length.toString() + " " + t("pages") + "\n" + (logseq.settings![currentGraphName + keySettingsViewMode] === "Page search (page-embed)" ? // embedの場合はlimitの件数を表示
+      t("Found") + " : " + array.length.toString() + " " + t("pages") + "\n" + (mode === "Page search (page-embed)" ? // embedの場合はlimitの件数を表示
         (t("Limit (by user config)") + " : " + limit.toString() + " " + t("pages"))
         : ""))
 
   const batch: IBatchBlock[] = []
 
-  switch (logseq.settings![currentGraphName + keySettingsViewMode]) {
+  switch (mode) {
     case "Full text search":
       logseq.updateSettings({
         [currentGraphName + keySettingsPageStyle]: "Expansion"
