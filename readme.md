@@ -44,7 +44,6 @@ This plugin does not work with Logseq db version.
 ## Showcase / Questions / Ideas / Help
 
 > Go to the [Discussions](https://github.com/YU000jp/logseq-plugin-logging-search/discussions) tab to ask and find this kind of things.
-1. 
 1. Currently, search terms are matched case-sensitive and space-sensitive.
 1. In embed mode, it can be displayed in card tile style. (Except in the sidebar)
    > ![image](https://github.com/user-attachments/assets/671fd65c-ed02-4b15-8bbc-c8fa1757b84b)
