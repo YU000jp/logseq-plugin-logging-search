@@ -39,5 +39,11 @@
   "All blocks containing the keyword": "키워드를 포함하는 모든 블록",
   "Find related pages": "관련 페이지 검색",
   "Contents of relevant pages": "관련 페이지에는 무엇이 있습니까?",
-  "All blocks linked to related pages": "관련 페이지에 연결된 모든 블록"
+  "All blocks linked to related pages": "관련 페이지에 연결된 모든 블록",
+  "List relevant pages": "관련 페이지 목록",
+  "Full text search": "전체 텍스트 검색",
+  "Links": "링크:",
+  "Page-embed": "ページ埋込 (embed)",
+  "Linked": "연결",
+  "Linked to.": "연결"
 }

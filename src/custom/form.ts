@@ -97,6 +97,7 @@ export const addLeftMenuSearchForm = async () => {
         const option = document.createElement("option")
         option.value = m.value
         option.label = m.label
+        option.title = m.description || ''  // Add description as title
         if (logseq.settings![currentGraphName + keySettingsViewMode] === m.value)
           option.selected = true
         select.appendChild(option)

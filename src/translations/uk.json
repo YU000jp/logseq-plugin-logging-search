@@ -39,5 +39,11 @@
   "All blocks containing the keyword": "Всі блоки, які містять ключові слова",
   "Find related pages": "Пошук на пов'язаних сторінках",
   "Contents of relevant pages": "Що на пов'язаній сторінці?",
-  "All blocks linked to related pages": "Всі блоки пов'язані з пов'язаними сторінками"
+  "All blocks linked to related pages": "Всі блоки пов'язані з пов'язаними сторінками",
+  "List relevant pages": "Список пов'язаних сторінок",
+  "Full text search": "Повнотекстовий пошук",
+  "Links": "Посилання:",
+  "Page-embed": "ページ埋込 (вбудовування)",
+  "Linked": "Пов'язаний",
+  "Linked to.": "Пов'язаний"
 }

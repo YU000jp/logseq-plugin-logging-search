@@ -39,5 +39,11 @@
   "All blocks containing the keyword": "Alle blokken die trefwoorden bevatten",
   "Find related pages": "Gerelateerde pagina's zoeken",
   "Contents of relevant pages": "Wat staat er op de gerelateerde pagina?",
-  "All blocks linked to related pages": "Alle blokken gelinkt aan gerelateerde pagina's"
+  "All blocks linked to related pages": "Alle blokken gelinkt aan gerelateerde pagina's",
+  "List relevant pages": "Lijst van gerelateerde pagina's",
+  "Full text search": "Zoeken in volledige tekst",
+  "Links": "Verwijzigingen:",
+  "Page-embed": "ページ埋込 (embed)",
+  "Linked": "Gekoppelde",
+  "Linked to.": "Gekoppelde"
 }

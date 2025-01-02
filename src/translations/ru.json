@@ -39,5 +39,11 @@
   "All blocks containing the keyword": "Все блоки, которые содержат ключевые слова",
   "Find related pages": "Поиск связанных страниц",
   "Contents of relevant pages": "Что находится на соответствующей странице?",
-  "All blocks linked to related pages": "Все блоки связаны со связанными страницами"
+  "All blocks linked to related pages": "Все блоки связаны со связанными страницами",
+  "List relevant pages": "Список связанных страниц",
+  "Full text search": "Полнотекстовый поиск",
+  "Links": "Дюны:",
+  "Page-embed": "ページ埋込 (встроить)",
+  "Linked": "Связан",
+  "Linked to.": "Связан"
 }

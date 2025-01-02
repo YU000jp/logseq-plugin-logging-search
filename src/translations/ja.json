@@ -36,8 +36,12 @@
   "It affects the display performance.": "これは、表示パフォーマンスに影響します。",
   "List of search words for input correction": "入力修正用の検索ワードのリスト",
   "When you execute a search, the search word is added here and up to 30 are retained. It is separated by line breaks.": "検索を実行すると、ここに検索ワードが追加され、最大 30 個まで保持されます。改行で区切られます。",
-  "All blocks containing the keyword": "キーワードを含むすべてのブロック",
-  "Find related pages": "関連ページを検索",
-  "Contents of relevant pages": "関連ページの内容すべて",
-  "All blocks linked to related pages": "関連ページにリンクされたすべてのブロック"
+  "All blocks containing the keyword": "キーワードを含む すべてのブロック",
+  "List relevant pages": "関連ページの一覧",
+  "Contents of relevant pages": "関連ページの内容 全部",
+  "All blocks linked to related pages": "関連ページにリンクされた すべてのブロック",
+  "Full text search": "全文検索",
+  "Links": "リンク集",
+  "Page-embed": "ページ埋込 (embed)",
+  "Linked to.": "リンクされている"
 }

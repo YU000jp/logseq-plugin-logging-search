@@ -39,5 +39,11 @@
   "All blocks containing the keyword": "Tous les blocs contenant des mots-clés",
   "Find related pages": "Rechercher des pages connexes",
   "Contents of relevant pages": "Qu’y a-t-il sur la page associée ?",
-  "All blocks linked to related pages": "Tous les blocs liés à des pages connexes"
+  "All blocks linked to related pages": "Tous les blocs liés à des pages connexes",
+  "List relevant pages": "Liste des pages associées",
+  "Full text search": "Recherche en texte intégral",
+  "Links": "Liens:",
+  "Page-embed": "ページ埋込 (embed)",
+  "Linked": "Lié",
+  "Linked to.": "Lié"
 }

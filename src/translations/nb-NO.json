@@ -39,5 +39,11 @@
   "All blocks containing the keyword": "Alle blokker som inneholder nøkkelord",
   "Find related pages": "Søk på relaterte sider",
   "Contents of relevant pages": "Hva er på den relaterte siden?",
-  "All blocks linked to related pages": "Alle blokker lenket til relaterte sider"
+  "All blocks linked to related pages": "Alle blokker lenket til relaterte sider",
+  "List relevant pages": "Liste over relaterte sider",
+  "Full text search": "Fulltekstsøk",
+  "Links": "Koblinger:",
+  "Page-embed": "ページ埋込 (embed)",
+  "Linked": "Sammenkoblet",
+  "Linked to.": "Sammenkoblet"
 }

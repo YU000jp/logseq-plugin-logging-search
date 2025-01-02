@@ -39,5 +39,11 @@
   "All blocks containing the keyword": "包含關鍵字的所有塊",
   "Find related pages": "搜索相關頁面",
   "Contents of relevant pages": "相關頁面上有什麼？",
-  "All blocks linked to related pages": "連結到相關頁面的所有區塊"
+  "All blocks linked to related pages": "連結到相關頁面的所有區塊",
+  "List relevant pages": "相關頁面清單",
+  "Full text search": "全文搜索",
+  "Links": "連結：",
+  "Page-embed": "ページ埋込 （embed）",
+  "Linked": "聯繫",
+  "Linked to.": "聯繫"
 }

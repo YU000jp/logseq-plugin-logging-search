@@ -10,12 +10,23 @@ export const styleList = [
 
 export const modeListArray = [ // 順番確定
     "All blocks containing the keyword",
-    "Find related pages",
+    "List relevant pages",
     "Contents of relevant pages",
     "All blocks linked to related pages",
 ]
 
-export const modeList = () => modeListArray.map((m) => ({ value: m, label: t(m) }))
+export const modeListDescription = [
+    t("Full text search"),// 全文検索
+    t("Links"),// リンク集
+    t("Page-embed"),// page-embed
+    t("Linked to."), // リンクされている
+]
+
+export const modeList = () => modeListArray.map((m, i) => ({
+    value: m,
+    label: t(m),
+    description: t(modeListDescription[i])
+}))
 
 /* user setting */
 // https://logseq.github.io/plugins/types/SettingSchemaDesc.html

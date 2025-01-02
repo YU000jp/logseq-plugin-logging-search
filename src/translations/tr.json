@@ -39,5 +39,11 @@
   "All blocks containing the keyword": "Anahtar kelime içeren tüm bloklar",
   "Find related pages": "İlgili sayfalarda ara",
   "Contents of relevant pages": "İlgili sayfada neler var?",
-  "All blocks linked to related pages": "İlgili sayfalara bağlı tüm bloklar"
+  "All blocks linked to related pages": "İlgili sayfalara bağlı tüm bloklar",
+  "List relevant pages": "İlgili sayfaların listesi",
+  "Full text search": "Tam metin araması",
+  "Links": "Bağlantı:",
+  "Page-embed": "ページ埋込 (embed)",
+  "Linked": "Bağlantılı",
+  "Linked to.": "Bağlantılı"
 }

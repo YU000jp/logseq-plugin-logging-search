@@ -21,7 +21,7 @@ This plugin does not work with Logseq db version.
    - To open in the sidebar, turn on the toggle next to the input field.
    - Content mode selection
      1. All blocks containing the keyword (Full text search)
-     1. Find related pages (list)
+     1. List relevant pages (link only)
      1. Contents of relevant pages (embed)
      1. All blocks linked to related pages
    > ![image](https://github.com/user-attachments/assets/ac903fd7-5cd3-4b0a-97fb-df3a43fc0967)
