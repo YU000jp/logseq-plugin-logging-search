@@ -56,7 +56,7 @@ body[data-page="page"] {
                         &>div.block-content-wrapper {
                               width: 100%;
 
-                              &>div>div>div.block-content &>div.block-content-inner>div>span.inline {
+                              &>div>div>div.block-content>div.block-content-inner>div>span.inline {
 
                                     &>div:is(.embed-page, .dsl-query) {
                                           width: fit-content;
