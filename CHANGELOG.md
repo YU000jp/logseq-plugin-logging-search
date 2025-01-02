@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/YU000jp/logseq-plugin-logging-search/compare/v1.2.1...v1.2.2) (2025-01-02)
+
+
+### Bug Fixes
+
+* Change mode name and its translation 2 ([f13ea6f](https://github.com/YU000jp/logseq-plugin-logging-search/commit/f13ea6ff3cb5881cdf5825ad3676a6f735d5a0d6))
+
 ## [1.2.1](https://github.com/YU000jp/logseq-plugin-logging-search/compare/v1.2.0...v1.2.1) (2025-01-01)
 
 
