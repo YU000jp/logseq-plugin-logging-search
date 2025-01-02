@@ -71,6 +71,8 @@ export const addLeftMenuSearchForm = async () => {
       details.id = keyLeftMenuSearchForm
       details.style.background = "var(--ls-page-blockquote-bg-color)"
       details.style.borderRadius = "0 0 0 1em"
+      details.style.marginTop = "1em"
+      details.style.marginBottom = "1em"
       details.style.zIndex = "1"
       if (logseq.settings![currentGraphName + keySettingsSearchFormDetails] === true)
         details.open = true
@@ -80,6 +82,7 @@ export const addLeftMenuSearchForm = async () => {
         }), 100)
 
       const summary = document.createElement("summary")
+      summary.className = "text-sm"
       summary.textContent = `${icon} ${mainPageTitle}`
       details.appendChild(summary)
 
