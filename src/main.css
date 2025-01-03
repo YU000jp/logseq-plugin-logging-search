@@ -59,7 +59,7 @@ body[data-page="page"] {
                                     pointer-events: none;
 
                                     &>div.block-content-inner>div>span.inline {
-                                          &>div:is(.embed-page, .dsl-query) {
+                                          &>div.embed-page {
                                                 width: fit-content;
                                                 min-width: 100%;
                                                 min-height: 300px;
