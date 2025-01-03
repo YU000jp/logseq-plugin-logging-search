@@ -1,3 +1,16 @@
+# [1.3.0](https://github.com/YU000jp/logseq-plugin-logging-search/compare/v1.2.2...v1.3.0) (2025-01-03)
+
+
+### Bug Fixes
+
+* **bug:** CSS ([7231439](https://github.com/YU000jp/logseq-plugin-logging-search/commit/72314392b4c63a429c5e67768fd92deb803b110f))
+* **bug:** Open in right sidebar ([be98bb5](https://github.com/YU000jp/logseq-plugin-logging-search/commit/be98bb59d9ad0129ba167dc0f41d7a36b1a99274))
+
+
+### Features
+
+* Automatic selection of the embedding view ([a99838c](https://github.com/YU000jp/logseq-plugin-logging-search/commit/a99838c8611ec9a4f7e85f3dfc78cea70beb259a))
+
 ## [1.2.2](https://github.com/YU000jp/logseq-plugin-logging-search/compare/v1.2.1...v1.2.2) (2025-01-02)
 
 
