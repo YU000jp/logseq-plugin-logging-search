@@ -36,10 +36,8 @@ export const settingsTemplate = (currentGraphName: string): SettingSchemaDesc[] 
         // type: "enum",
         type: "heading",
         default: modeListArray[0],
-        // コンテンツのモード選択
-        title: t("Content mode selection"),
-        description: modeList().map((m) => m.label).join("\n"),
-        // enumChoices: modeList().map((m) => m.value),
+        title: "",
+        description: "",
     },
     { // Embed の場合のみ、ページコンテンツが存在しないものを除外する
         key: currentGraphName + "embedExcludeNoContent",
@@ -70,9 +68,7 @@ export const settingsTemplate = (currentGraphName: string): SettingSchemaDesc[] 
         default: "30",
         // このプラグインで表示するembedの数です。表示パフォーマンスに影響します。
         // この設定に関わらず、Lined Referencesモードの場合、最高8に限定されます。
-        description: `
-        ${t("The number of embeds to display.")} ${t("It affects the display performance.")}
-        `,
+        description: t("The number of embeds to display.") + " " + t("It affects the display performance."),
     },
     {
         key: currentGraphName + "searchWordDataList",

@@ -28,17 +28,31 @@ export const generateEmbed = async (
 
     const batch: IBatchBlock[] = await createBatch(pageEntities.map((v) => v.name), limit, currentGraphName, keyword, mode) // ページコンテンツを生成
     //  console.log(batch)
-    if (batch.length > 0)
+    if (batch.length > 0) {
       await outputList(blocks, pageName, batch, keyword, mode) // ページコンテンツを生成
-    else
+
+      // Wide モードにする
+      logseq.updateSettings({
+        [currentGraphName + keySettingsPageStyle]:
+          // 2の場合はWideモードにする
+          batch.length == 2 ? "Wide"
+            // 3～10の場合はGalleryモードにする
+            : batch.length >= 3 && batch.length <= 10 ? "Gallery"
+              // 11以上の場合はTileモードにする
+              : batch.length >= 11 ? "Tile"
+                : "Expansion"
+      })
+
+    } else
       await resetPageBlocks(blocks, pageName)// batchが空の場合
   } else
     await resetPageBlocks(blocks, pageName)// 見つからなかった場合
 
   // ブロックの編集モードを終了
-  setTimeout(() => logseq.Editor.exitEditingMode(false), 300)
-
-  logseq.hideMainUI({ restoreEditingCursor: false })
+  setTimeout(() => {
+    logseq.Editor.exitEditingMode(false)
+    logseq.hideMainUI({ restoreEditingCursor: false })
+  }, 300)
 }
 
 
@@ -57,7 +71,6 @@ const outputList = async (
       await logseq.Editor.updateBlock(newBlockEntity.uuid, `# ${mode}`) // 先頭行
     else
       await logseq.Editor.updateBlock(newBlockEntity.uuid, `# ${t("Search result")}: ${keyword}\n${t(mode)}`) // 先頭行
-    logseq.Editor.exitEditingMode(false)
   }
 }
 
@@ -93,7 +106,7 @@ const createBatch = async (
         content: `{{query "${value}"}}`, // フルテキスト検索を設置
       })
       break
-    
+
     case modeListArray[1]: // 関連ページを検索
       logseq.updateSettings({
         [currentGraphName + keySettingsPageStyle]: "Expansion"
@@ -144,39 +157,39 @@ const createBatch = async (
         }
       }
       break
-    
-      case modeListArray[2]: // 関連ページの内容
-        logseq.updateSettings({
-          [currentGraphName + keySettingsPageStyle]: "Tile"
-        })
-        const arrayEmpty: string[] = []
-        let count = limit
-        for (const pageName of array) {
-          if (count <= 0) break
-          if (pageName) {
-            if (logseq.settings![currentGraphName + "embedExcludeNoContent"] === true) { // ページ内容が空の場合はスキップ
-              const blockContent = await getBlockContentFromPageName(pageName) as { content: BlockEntity["content"] }[] | null
-              if (blockContent && blockContent.length <= (logseq.settings![currentGraphName + "embedExcludeFewLines"] as number || 0)) {
-                arrayEmpty.push(pageName)
-                continue
-              }
+
+    case modeListArray[2]: // 関連ページの内容
+      logseq.updateSettings({
+        [currentGraphName + keySettingsPageStyle]: "Tile"
+      })
+      const arrayEmpty: string[] = []
+      let count = limit
+      for (const pageName of array) {
+        if (count <= 0) break
+        if (pageName) {
+          if (logseq.settings![currentGraphName + "embedExcludeNoContent"] === true) { // ページ内容が空の場合はスキップ
+            const blockContent = await getBlockContentFromPageName(pageName) as { content: BlockEntity["content"] }[] | null
+            if (blockContent && blockContent.length <= (logseq.settings![currentGraphName + "embedExcludeFewLines"] as number || 0)) {
+              arrayEmpty.push(pageName)
+              continue
             }
-            count--
-            batch.push({
-              content: `{{embed [[${pageName}]]}}`, // embedを設置
-            })
           }
-        }
-        // 空のページを通知
-        if (arrayEmpty.length > 0)
+          count--
           batch.push({
-            // [[ページ名]]の形式で表示
-            content: t("The following pages have no content") + ": \n" + arrayEmpty.map(page => `[[${page}]]`).join("\n"),
+            content: `{{embed [[${pageName}]]}}`, // embedを設置
           })
-        if (batch.length > 0)
-          logseq.UI.showMsg(t("When content is found, embed is placed."), "info", { timeout: 3000 })
+        }
+      }
+      // 空のページを通知
+      if (arrayEmpty.length > 0)
+        batch.push({
+          // [[ページ名]]の形式で表示
+          content: t("The following pages have no content") + ": \n" + arrayEmpty.map(page => `[[${page}]]`).join("\n"),
+        })
+      if (batch.length > 0)
+        logseq.UI.showMsg(t("When content is found, embed is placed."), "info", { timeout: 3000 })
       break
-    
+
     case modeListArray[3]: // 関連ページにリンクされているすべてのブロック
       logseq.updateSettings({
         [currentGraphName + keySettingsPageStyle]: "Expansion"
@@ -187,7 +200,7 @@ const createBatch = async (
         content: `{{query (or ${array.map(page => `[[${page}]]`).join(" ")})}}`, //ひとつのクエリーで複数のページを検索
       })
       break
-    
+
     case "Recent history": // 最近の履歴
       logseq.updateSettings({
         [currentGraphName + keySettingsPageStyle]: "Tile"
@@ -208,7 +221,7 @@ const createBatch = async (
           content: t("No recent pages"),
         })
       break
-    
+
     case "Favorites": // お気に入り
       logseq.updateSettings({
         [currentGraphName + keySettingsPageStyle]: "Tile"
@@ -229,7 +242,7 @@ const createBatch = async (
           content: t("No favorites"),
         })
       break
-    
+
     default: // エラー
       break
   }

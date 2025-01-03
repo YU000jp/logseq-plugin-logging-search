@@ -1,4 +1,3 @@
-
 #left-sidebar li[title="Logging-Search-Plugin" i] {
       display: none;
 }
@@ -56,62 +55,38 @@ body[data-page="page"] {
                         &>div.block-content-wrapper {
                               width: 100%;
 
-                              &>div>div>div.block-content>div.block-content-inner>div>span.inline {
+                              &>div>div>div.block-content {
+                                    pointer-events: none;
 
-                                    &>div:is(.embed-page, .dsl-query) {
-                                          width: fit-content;
-                                          min-width: 100%;
-                                          min-height: 300px;
-                                          /* pointer-events: all; */
-
-                                          &:not(:has(>section+div.blocks-container)) {
-                                                background: repeating-linear-gradient(45deg, var(--ls-secondary-background-color), transparent 100px);
-                                          }
-
-                                          &>section.embed-header {
-                                                position: sticky;
-                                                top: 0;
-                                                background-color: var(--ls-tertiary-background-color);
-                                                z-index: 1;
+                                    &>div.block-content-inner>div>span.inline {
+                                          &>div:is(.embed-page, .dsl-query) {
                                                 width: fit-content;
-                                          }
+                                                min-width: 100%;
+                                                min-height: 300px;
+                                                pointer-events: all;
 
-                                          &>div.blocks-container {
-                                                font-size: .94em;
-                                          }
+                                                &:not(:has(>section+div.blocks-container)) {
+                                                      background: repeating-linear-gradient(45deg, var(--ls-secondary-background-color), transparent 100px);
+                                                }
 
-                                    }
+                                                &>section.embed-header {
+                                                      position: sticky;
+                                                      top: 0;
+                                                      background-color: var(--ls-tertiary-background-color);
+                                                      z-index: 1;
+                                                      width: fit-content;
+                                                      padding-right: 1em;
+                                                }
 
-                                    &>div.dsl-query>div>div>div>div.custom-query {
-                                          opacity: 0.9;
-                                          font-size: 0.8em;
-                                          overflow: auto;
-                                          width: max-content;
-                                          /* pointer-events: all; */
-
-                                          &>div.th {
-                                                display: none;
-                                          }
-
-                                          &>div.cp__query-builder {
-                                                user-select: none;
-                                                pointer-events: none;
-
-                                                &>div.cp__query-builder-filter>div.ui__dropdown-trigger {
-                                                      display: none;
+                                                &>div.blocks-container {
+                                                      font-size: .94em;
                                                 }
                                           }
                                     }
                               }
-
                         }
                   }
             }
-      }
-
-      /* Expansion */
-      &.psp-Expansion>div#root>div>main div#main-content-container div.page:has([id="logging-search-plugin"]) h1.page-title::after {
-            content: "Expansion";
       }
 
       /* Wide */
@@ -152,15 +127,6 @@ body[data-page="page"] {
                                     text-overflow: ellipsis;
                                     min-width: fit-content;
                               }
-                        }
-                  }
-
-                  &:has([id="logging-search-plugin"]) h1.page-title {
-                        color: chocolate;
-                        /* 動作確認用 */
-
-                        &::after {
-                              content: "Wide";
                         }
                   }
             }
@@ -215,15 +181,6 @@ body[data-page="page"] {
                               }
                         }
                   }
-
-                  &:has([id="logging-search-plugin"]) h1.page-title {
-                        color: yellowgreen;
-                        /* 動作確認用 */
-
-                        &::after {
-                              content: "Gallery";
-                        }
-                  }
             }
       }
 
@@ -276,15 +233,6 @@ body[data-page="page"] {
                                           }
                                     }
                               }
-                        }
-                  }
-
-                  &:has([id="logging-search-plugin"]) h1.page-title {
-                        color: lightseagreen;
-                        /* 動作確認用 */
-
-                        &::after {
-                              content: "Tile";
                         }
                   }
             }
