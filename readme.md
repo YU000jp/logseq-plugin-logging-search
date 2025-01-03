@@ -37,7 +37,7 @@ This plugin does not work with Logseq db version.
 
 ### Install from Logseq Marketplace
 
-- Press [`---`] on the top right toolbar to open [`Plugins`]. Select marketplace. Type `log` in the search field, select it from the search results and install
+- Press [`---`] on the top right toolbar to open [`Plugins`]. Select marketplace. Type `search` in the search field, select it from the search results and install
 
 ---
 
