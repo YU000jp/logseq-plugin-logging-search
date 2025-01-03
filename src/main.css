@@ -55,15 +55,11 @@ body[data-page="page"] {
                         &>div.block-content-wrapper {
                               width: 100%;
 
-                              &>div>div>div.block-content {
-                                    pointer-events: none;
-
-                                    &>div.block-content-inner>div>span.inline {
+                              &>div>div>div.block-content>div.block-content-inner>div>span.inline {
                                           &>div.embed-page {
                                                 width: fit-content;
                                                 min-width: 100%;
                                                 min-height: 300px;
-                                                pointer-events: all;
 
                                                 &:not(:has(>section+div.blocks-container)) {
                                                       background: repeating-linear-gradient(45deg, var(--ls-secondary-background-color), transparent 100px);
@@ -82,7 +78,6 @@ body[data-page="page"] {
                                                       font-size: .94em;
                                                 }
                                           }
-                                    }
                               }
                         }
                   }
