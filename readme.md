@@ -38,6 +38,8 @@ This plugin does not work with Logseq db version.
 ### Install from Logseq Marketplace
 
 - Press [`---`] on the top right toolbar to open [`Plugins`]. Select marketplace. Type `search` in the search field, select it from the search results and install
+  > ![image](https://github.com/user-attachments/assets/0508bf4b-c29f-4a76-89c5-ff925ea508fd)
+
 
 ---
 
