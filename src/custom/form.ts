@@ -334,14 +334,23 @@ const saveSearchWord = (currentGraphName: string) => {
 
 const openPageOrSidebar = (ev: MouseEvent, currentGraphName: string) => {
   setTimeout(async () => {
+
+    const checkboxEle = parent.document.getElementById(keyOnSidebarCheckbox) as HTMLInputElement | null
+
     if (ev.shiftKey === true // シフトキーが押されている場合
       || logseq.settings![currentGraphName + keySettingsViewMode] === modeListArray[1] // リストのみの場合
+      || checkboxEle && checkboxEle.checked === true
       || logseq.settings![currentGraphName + "openInRightSidebar"] === true) { // チェックボックスがオン場合
+
       const pageEntity = await logseq.Editor.getPage(mainPageTitle) as { uuid: PageEntity["uuid"] } | null
       if (pageEntity)
         logseq.Editor.openInRightSidebar(pageEntity.uuid)
-    }
-    else
+
+      if (checkboxEle?.checked === true)
+        logseq.updateSettings({
+          [currentGraphName + "openInRightSidebar"]: true
+        })
+    } else
       logseq.App.pushState('page', { name: mainPageTitle }) // ページを開く
   }, 500)
 }
