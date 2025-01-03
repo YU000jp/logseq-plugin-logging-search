@@ -68,7 +68,7 @@ const outputList = async (
   if (newBlockEntity) {
     await logseq.Editor.insertBatchBlock(newBlockEntity.uuid, batch, { before: false, sibling: false })
     if (mode === "Recent history" || mode === "Favorites")
-      await logseq.Editor.updateBlock(newBlockEntity.uuid, `# ${mode}`) // 先頭行
+      await logseq.Editor.updateBlock(newBlockEntity.uuid, `# ${t(mode)}`) // 先頭行
     else
       await logseq.Editor.updateBlock(newBlockEntity.uuid, `# ${t("Search result")}: ${keyword}\n${t(mode)}`) // 先頭行
   }
