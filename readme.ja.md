@@ -55,6 +55,9 @@
 1. このプラグインがオンになっていると、「Logging-Search-Plugin」ページが生成されます。削除しても復元されます。
 1. このプラグインにはまだ改善の余地があります。問題が発生したり、改善のアイデアがあればお知らせください。
 1. このプラグインは Logseq の DOM（Document Object Model）構造に依存しています。Logseq のバージョンアップデートにより DOM 構造が変更された場合、スタイルが適用されないことがあります。CSS を調整して対応します。何か気づいたことがあれば、問題を提起してください。
+1. 関連プラグイン
+   1. [Draft Notes](https://github.com/YU000jp/logseq-plugin-draft-notes)
+   1. [Multi Random Note](https://github.com/YU000jp/logseq-plugin-multi-random-note)
 
 ## 先行技術 & クレジット
 
