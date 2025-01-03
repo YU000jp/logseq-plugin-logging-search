@@ -53,6 +53,9 @@ This plugin does not work with Logseq db version.
 1. When this plugin is turned on, the “Logging-Search-Plugin” page is generated. This will be restored even if you delete it.
 1. This plugin still has room for improvement. Please let me know if you encounter any issues or have any ideas for enhancement.
 1. This plugin relies on Logseq's DOM (Document Object Model) structure. If the DOM structure changes due to a Logseq version update, styles may not be applied. We will adjust the CSS to deal with it. If you notice something, please raise an issue.
+1. Related plugins
+   1. [Draft Notes](https://github.com/YU000jp/logseq-plugin-draft-notes)
+   1. [Multi Random Note](https://github.com/YU000jp/logseq-plugin-multi-random-note)
 
 ## Prior art & Credit
 
