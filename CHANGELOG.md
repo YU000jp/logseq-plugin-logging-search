@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/YU000jp/logseq-plugin-logging-search/compare/v1.3.1...v1.3.2) (2025-01-05)
+
+
+### Bug Fixes
+
+* **bug:** Reflecting search term list updates in the search form ([4953796](https://github.com/YU000jp/logseq-plugin-logging-search/commit/49537967450324fb64835b374881f91a449a8c7f))
+
 ## [1.3.1](https://github.com/YU000jp/logseq-plugin-logging-search/compare/v1.3.0...v1.3.1) (2025-01-05)
 
 
