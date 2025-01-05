@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/YU000jp/logseq-plugin-logging-search/compare/v1.3.0...v1.3.1) (2025-01-05)
+
+
+### Bug Fixes
+
+* **bug:** The text inside the input field disappears [#1](https://github.com/YU000jp/logseq-plugin-logging-search/issues/1) ([c469be2](https://github.com/YU000jp/logseq-plugin-logging-search/commit/c469be2688569693700d89c50d6f2ab47c08b8a6))
+
 # [1.3.0](https://github.com/YU000jp/logseq-plugin-logging-search/compare/v1.2.2...v1.3.0) (2025-01-03)
 
 
