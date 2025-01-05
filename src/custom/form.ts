@@ -172,7 +172,7 @@ export const addLeftMenuSearchForm = async () => {
       input.type = "text"
       input.id = keySearchInput
       input.placeholder = t("Search keyword")
-      input.className = "form-input hover:text-primary-foreground text-lg"
+      input.className = "form-input transition duration-150 ease-in-out text-lg"
       input.value = logseq.settings![currentGraphName + "searchWord"] as string || ""
       // mouseoverでフォーカス
       input.addEventListener("mouseover", () => input.focus())
