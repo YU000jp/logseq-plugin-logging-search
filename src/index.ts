@@ -45,6 +45,7 @@ export const keyLeftMenuSearchForm = `${shortKey}--search-form`
 
 let currentGraphName = "" // 現在のgraph名を保持する
 
+let processingResetForm = false
 
 export const getCurrentGraph = async (): Promise<string> => {
   const userGraph = await logseq.App.getCurrentGraph() as { name: AppGraphInfo["name"] } | null
@@ -170,6 +171,21 @@ const main = async () => {
       if (newSet[currentGraphName + keySettingsPageStyle])
         parent.document.body.classList.add(`${shortKey}-${newSet[currentGraphName + keySettingsPageStyle]}`)
     }
+
+    // 入力候補が変更されたとき
+    if (newSet[currentGraphName + "searchWordDataList"] !== oldSet[currentGraphName + "searchWordDataList"]) {
+
+      if (processingResetForm) {
+        setTimeout(() => {
+          if (processingResetForm) return
+          resetForm()
+        }, 100)
+        return
+      }
+      processingResetForm = true
+      await resetForm()
+      setTimeout(() => processingResetForm = false, 100)
+    }
   })
 
 
@@ -184,5 +200,15 @@ const main = async () => {
 
 }/* end_main */
 
+
+const resetForm = async () => {
+  const formInputElement = parent.document.getElementById(keySearchInput) as HTMLInputElement | null
+  if (formInputElement)
+    logseq.updateSettings({ [currentGraphName + "searchWord"]: formInputElement.value })
+
+  clearEle(keyLeftMenuSearchForm)
+  await new Promise(resolve => setTimeout(resolve, 500))//500ms待ってから再描画
+  await addLeftMenuSearchForm()
+}
 
 logseq.ready(main).catch(console.error)
