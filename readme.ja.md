@@ -1,6 +1,6 @@
 # Logseq プラグイン: Logging Search 🔎
 
-クエリー機能を使用した検索プラグイン。マークダウン書式、プロパティ、数式、埋め込みコンテンツなど、すべての要素が正しく表示されます。
+レンダリングされた結果を表示するクエリベースの検索プラグイン
 
 > [!WARNING]
 このプラグインは Logseq db バージョンでは動作しません。
@@ -30,14 +30,16 @@
 1. マーケットプレイスからインストール
    - 右上の [`---`] > [`プラグイン`] > `search` で検索 > インストール
 
-   > ![image](https://github.com/user-attachments/assets/ac903fd7-5cd3-4b0a-97fb-df3a43fc0967)
-
 2. 基本的な使い方
    - 左メニューの検索ボックスにキーワードを入力
-   - Enterキーを押すかサイドバーのトグルでサイドバーに表示
-   - 4つの表示モードから選択
    
-   > ![image](https://github.com/user-attachments/assets/ac903fd7-5cd3-4b0a-97fb-df3a43fc0967)
+      > ![image](https://github.com/user-attachments/assets/ac903fd7-5cd3-4b0a-97fb-df3a43fc0967)
+
+   - サイドバーのトグルでサイドバーに表示
+   - 4つの表示モードから選択
+
+      > ![image](https://github.com/user-attachments/assets/ac903fd7-5cd3-4b0a-97fb-df3a43fc0967)
+   - - Enterキーを押す
 
 ## 💡 使い方とヘルプ
 
@@ -59,10 +61,10 @@
 1. 現在のところ、キーワードに含まれる大文字小文字とスペースは区別されます。
 1. 埋め込みモードでは、カードタイルスタイルで表示できます。（サイドバーを除く）
    - 通常の埋め込みと同様に、その場で編集できます。表示エリアが小さすぎる場合は、サイドバーで開くかズームインします。
-   > ![image](https://github.com/user-attachments/assets/671fd65c-ed02-4b15-8bbc-c8fa1757b84b)
+     > ![image](https://github.com/user-attachments/assets/671fd65c-ed02-4b15-8bbc-c8fa1757b84b)
 1. ページ検索 (リンク)
    - キーワードをタイトルに含むページ を一覧表示するシンプルな機能
-   > ![image](https://github.com/user-attachments/assets/b404bb28-6db7-4aa5-974d-5329663103a5)
+     > ![image](https://github.com/user-attachments/assets/b404bb28-6db7-4aa5-974d-5329663103a5)
 1. このプラグインがオンになっていると、「Logging-Search-Plugin」ページが生成されます。削除しても復元されます。
 1. このプラグインにはまだ改善の余地があります。問題が発生したり、改善のアイデアがあればお知らせください。
 1. このプラグインは Logseq の DOM（Document Object Model）構造に依存しています。Logseq のバージョンアップデートにより DOM 構造が変更された場合、スタイルが適用されないことがあります。CSS を調整して対応します。何か気づいたことがあれば、問題を提起してください。

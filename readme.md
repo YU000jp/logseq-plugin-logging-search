@@ -1,8 +1,9 @@
 # Logseq Plugin: Logging Search 🔎
 
-Query-based search plugin that displays fully rendered results - markdown formatting, properties, math formulas, and embedded content all work correctly.
+Query-based search plugin that displays fully rendered results
 
 <div align="right">
+  
 [English](https://github.com/YU000jp/logseq-plugin-logging-search/)/[日本語](https://github.com/YU000jp/logseq-plugin-logging-search/blob/main/readme.ja.md) [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-logging-search)](https://github.com/YU000jp/logseq-plugin-logging-search/releases)[![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-logging-search/total.svg)](https://github.com/YU000jp/logseq-plugin-logging-search/releases)<!-- Published 2023 --><a href="https://www.buymeacoffee.com/yu000japan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=yu000japan&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
 </div>
 
@@ -29,14 +30,16 @@ This plugin does not work with Logseq db version.
 1. Install from Marketplace
    - Press [`---`] on the top right toolbar > [`Plugins`] > Search for `search` > Install
 
-   > ![image](https://github.com/user-attachments/assets/ac903fd7-5cd3-4b0a-97fb-df3a43fc0967)
-
 2. Basic Usage
    - Type keywords in the left menu search box
-   - Press Enter or use sidebar toggle to open in sidebar
-   - Choose from 4 viewing modes
    
-   > ![image](https://github.com/user-attachments/assets/ac903fd7-5cd3-4b0a-97fb-df3a43fc0967)
+      > ![image](https://github.com/user-attachments/assets/ac903fd7-5cd3-4b0a-97fb-df3a43fc0967)
+
+   - Use sidebar toggle to view in sidebar
+   - Select from 4 viewing modes
+
+      > ![image](https://github.com/user-attachments/assets/ac903fd7-5cd3-4b0a-97fb-df3a43fc0967)
+   - Press Enter
 
 ## 💡 Tips & Help
 
