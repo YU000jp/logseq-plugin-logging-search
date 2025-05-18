@@ -1,6 +1,6 @@
 import { BlockEntity } from '@logseq/libs/dist/LSPlugin.user'
 import { t } from 'logseq-l10n'
-import { checkGraphName, keyCloseButton, keyPageBarId, keySettingsButton, keyToggleButton, mainPageTitle, mainPageTitleLower } from '.'
+import { booleanLogseqVersionMd, checkGraphName, keyCloseButton, keyPageBarId, keySettingsButton, keyToggleButton, mainPageTitle, mainPageTitleLower } from '.'
 import { resetPageBlocks } from './custom/page'
 import { generateEmbed } from './embed/generateBlock'
 import { keySettingsViewMode } from './settings'
@@ -33,6 +33,7 @@ export const updateMainContent = async (value: string, flag?: { force?: boolean,
   processingUpdateMainContent = true
   setTimeout(() => processingUpdateMainContent = false, 400)
   const currentGraphName = await checkGraphName()
+  const logseqVerMd = booleanLogseqVersionMd() as boolean
   const blocks = await logseq.Editor.getPageBlocksTree(mainPageTitle) as { uuid: BlockEntity["uuid"] }[]
   // console.log("blocks", blocks)
   if (blocks)
@@ -43,6 +44,7 @@ export const updateMainContent = async (value: string, flag?: { force?: boolean,
         value,
         mainPageTitle,
         blocks,
+        logseqVerMd,
         flag?.favorites === true ? "Favorites"
           : flag?.recent === true ? "Recent history"
             : logseq.settings![currentGraphName + keySettingsViewMode] as string,

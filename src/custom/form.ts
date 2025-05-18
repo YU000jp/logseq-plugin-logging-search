@@ -65,7 +65,7 @@ export const addLeftMenuSearchForm = async () => {
   try {
     clearEle(keyLeftMenuSearchForm)
   } finally {
-    const leftSidebarNavContentsElement = parent.document.querySelector("#left-sidebar div.nav-contents-container") as HTMLElement | null
+    const leftSidebarNavContentsElement = parent.document.querySelector("#left-sidebar div:is(.nav-contents-container,.sidebar-contents-container)") as HTMLElement | null
     if (leftSidebarNavContentsElement) {
       const details = document.createElement("details")
       details.id = keyLeftMenuSearchForm

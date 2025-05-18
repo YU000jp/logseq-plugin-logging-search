@@ -2,13 +2,14 @@ import { BlockEntity, IBatchBlock, PageEntity } from "@logseq/libs/dist/LSPlugin
 import { t } from "logseq-l10n"
 import { clearPageBlocks, resetPageBlocks } from "../custom/page"
 import { keySettingsPageStyle, modeListArray } from "../settings"
-import { getBlockContentFromPageName, getPageNameListFromKeyword } from './query/advancedQuery'
+import { BlockContent, getBlockContentFromPageName, getPageNameListFromKeyword, PageName } from './query/advancedQuery'
 
 
 export const generateEmbed = async (
   keyword: string,
   pageName: string,
   blocks: { uuid: BlockEntity["uuid"] }[],
+  logseqVerMd: boolean,
   mode: string,
   currentGraphName: string,
   flag?: { force?: boolean },
@@ -22,11 +23,11 @@ export const generateEmbed = async (
   logseq.showMainUI({ autoFocus: false })
   setTimeout(() => logseq.hideMainUI({ restoreEditingCursor: false }), 3000)
 
-  const pageEntities = await getPageNameListFromKeyword(keyword) as { name: PageEntity["name"] }[] | null
+  const pageEntities = await getPageNameListFromKeyword(keyword, logseqVerMd) as PageName[] | null
   // console.log(pageEntities)
   if (pageEntities && pageEntities.length > 0) {
 
-    const batch: IBatchBlock[] = await createBatch(pageEntities.map((v) => v.name), limit, currentGraphName, keyword, mode) // ページコンテンツを生成
+    const batch: IBatchBlock[] = await createBatch(pageEntities.map((v) => v.name), limit, currentGraphName, keyword, mode, logseqVerMd) // ページコンテンツを生成
     //  console.log(batch)
     if (batch.length > 0) {
       await outputList(blocks, pageName, batch, keyword, mode) // ページコンテンツを生成
@@ -81,6 +82,7 @@ const createBatch = async (
   currentGraphName: string,
   value: string,
   mode: string,
+  logseqVerMd: boolean,
 ) => {
 
   // 文字数が少ない順にソート (/で区切られていないものをより先にする)
@@ -168,7 +170,7 @@ const createBatch = async (
         if (count <= 0) break
         if (pageName) {
           if (logseq.settings![currentGraphName + "embedExcludeNoContent"] === true) { // ページ内容が空の場合はスキップ
-            const blockContent = await getBlockContentFromPageName(pageName) as { content: BlockEntity["content"] }[] | null
+            const blockContent = await getBlockContentFromPageName(pageName, logseqVerMd) as BlockContent[] | null
             if (blockContent && blockContent.length <= (logseq.settings![currentGraphName + "embedExcludeFewLines"] as number || 0)) {
               arrayEmpty.push(pageName)
               continue

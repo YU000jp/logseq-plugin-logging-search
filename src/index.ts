@@ -1,9 +1,9 @@
 import '@logseq/libs' //https://plugins-doc.logseq.com/
-import { AppGraphInfo, LSPluginBaseInfo } from '@logseq/libs/dist/LSPlugin.user'
+import { AppGraphInfo, AppInfo, LSPluginBaseInfo } from '@logseq/libs/dist/LSPlugin.user'
 import { setup as l10nSetup } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
 import { addLeftMenuSearchForm } from './custom/form'
 import { resetPage } from './custom/page'
-import { getUuidFromPageName } from './embed/query/advancedQuery'
+import { BlockUuid, getUuidFromPageName } from './embed/query/advancedQuery'
 import { AddMenuButton, handleRouteChange } from './handle'
 import { clearEle } from './lib'
 import cssMain from './main.css?inline'
@@ -46,8 +46,14 @@ export const keyLeftMenuSearchForm = `${shortKey}--search-form`
 let currentGraphName = "" // 現在のgraph名を保持する
 
 let processingResetForm = false
+let logseqVersion: string = "" //バージョンチェック用
+let logseqVersionMd: boolean = false //バージョンチェック用
+let logseqDbGraph: boolean = false
+// export const getLogseqVersion = () => logseqVersion //バージョンチェック用
+export const booleanLogseqVersionMd = () => logseqVersionMd //バージョンチェック用
+export const booleanDbGraph = () => logseqDbGraph //バージョンチェック用
 
-export const getCurrentGraph = async (): Promise<string> => {
+const getCurrentGraph = async (): Promise<string> => {
   const userGraph = await logseq.App.getCurrentGraph() as { name: AppGraphInfo["name"] } | null
   if (userGraph) {
     // console.log("currentGraph", userGraph.name)
@@ -68,7 +74,7 @@ export const checkGraphName = async (): Promise<string> => {
     return currentGraphName
 }
 
-export const loadByGraph = async () => {
+const loadByGraph = async () => {
   const currentGraphName = await getCurrentGraph()
   if (currentGraphName === "")
     return // demo graphの場合は実行しない
@@ -79,6 +85,11 @@ export const loadByGraph = async () => {
 
 /* main */
 const main = async () => {
+
+  // バージョンチェック
+  logseqVersionMd = await checkLogseqVersion()
+  // DBグラフチェック
+  logseqDbGraph = await checkDbGraph()
 
   // l10nのセットアップ
   await l10nSetup({
@@ -98,14 +109,15 @@ const main = async () => {
   await loadByGraph()
 
   // メインページが存在したら削除する
-  if (await getUuidFromPageName(mainPageTitle) as { uuid: string }[] | null)
+  if (await getUuidFromPageName(mainPageTitle, logseqVersionMd) as BlockUuid[] | null)
     resetPage(mainPageTitle)
   else
     await logseq.Editor.createPage(mainPageTitle, "", { redirect: false, createFirstBlock: true })
 
-  // 専用メニューボタンを追加
-  AddMenuButton()
-
+  setTimeout(() => {
+    // 専用メニューボタンを追加
+    AddMenuButton()
+  }, 300)
 
   addLeftMenuSearchForm()
 
@@ -197,7 +209,9 @@ const main = async () => {
     resetPage(mainPageTitle)
   })
 
-
+  logseq.App.onCurrentGraphChanged(async () => {
+    logseqDbGraph = await checkDbGraph()
+  })
 }/* end_main */
 
 
@@ -209,6 +223,37 @@ const resetForm = async () => {
   clearEle(keyLeftMenuSearchForm)
   await new Promise(resolve => setTimeout(resolve, 500))//500ms待ってから再描画
   await addLeftMenuSearchForm()
+}
+
+// MDモデルかどうかのチェック DBモデルはfalse
+const checkLogseqVersion = async (): Promise<boolean> => {
+  const logseqInfo = (await logseq.App.getInfo("version")) as AppInfo | any
+  //  0.11.0もしくは0.11.0-alpha+nightly.20250427のような形式なので、先頭の3つの数値(1桁、2桁、2桁)を正規表現で取得する
+  const version = logseqInfo.match(/(\d+)\.(\d+)\.(\d+)/)
+  if (version) {
+    logseqVersion = version[0] //バージョンを取得
+    // console.log("logseq version: ", logseqVersion)
+
+    // もし バージョンが0.10.*系やそれ以下ならば、logseqVersionMdをtrueにする
+    if (logseqVersion.match(/0\.([0-9]|10)\.\d+/)) {
+      logseqVersionMd = true
+      // console.log("logseq version is 0.10.* or lower")
+      return true
+    } else logseqVersionMd = false
+  } else logseqVersion = "0.0.0"
+  return false
+}
+
+// DBグラフかどうかのチェック DBグラフだけtrue
+const checkDbGraph = async (): Promise<boolean> => {
+  const element = parent.document.querySelector(
+    "div.block-tags",
+  ) as HTMLDivElement | null // ページ内にClassタグが存在する  WARN:: ※DOM変更の可能性に注意
+  if (element) {
+    logseqDbGraph = true
+    return true
+  } else logseqDbGraph = false
+  return false
 }
 
 logseq.ready(main).catch(console.error)
