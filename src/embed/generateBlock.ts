@@ -3,6 +3,7 @@ import { t } from "logseq-l10n"
 import { clearPageBlocks, resetPageBlocks } from "../custom/page"
 import { keySettingsPageStyle, modeListArray } from "../settings"
 import { BlockContent, getBlockContentFromPageName, getPageNameListFromKeyword, PageName } from './query/advancedQuery'
+import { mainPageTitle } from ".."
 
 
 export const generateEmbed = async (
@@ -207,21 +208,43 @@ const createBatch = async (
       logseq.updateSettings({
         [currentGraphName + keySettingsPageStyle]: "Tile"
       })
-      const recentList = await logseq.App.getCurrentGraphRecent() as string[] | null
-      if (recentList) {
-        let count = limit
-        for (const pageName of recentList) {
-          if (count <= 0) break
-          count--
+      if (logseqVerMd === true) {
+        // md model
+        const recentList = await logseq.App.getCurrentGraphRecent() as string[] | null
+        if (recentList) {
+          let count = limit
+          for (const pageName of recentList) {
+            if (count <= 0) break
+            count--
+            batch.push({
+              content: `{{embed [[${pageName}]]}}`, // embedを設置
+            })
+          }
+        } else
+          // ページがない場合
           batch.push({
-            content: `{{embed [[${pageName}]]}}`, // embedを設置
+            content: t("No recent pages"),
           })
-        }
-      } else
-        // ページがない場合
-        batch.push({
-          content: t("No recent pages"),
-        })
+      } else {
+        // db model
+        const recentList = await logseq.App.getCurrentGraphRecent() as { title: string }[] | null
+        if (recentList) {
+          let count = limit
+          for (const item of recentList) {
+            if (count <= 0) break
+            count--
+            if(item.title === mainPageTitle) continue
+            // console.log(item)
+            batch.push({
+              content: `{{embed [[${item.title}]]}}`, // embedを設置
+            })
+          }
+        } else
+          // ページがない場合
+          batch.push({
+            content: t("No recent pages"),
+          })
+      }
       break
 
     case "Favorites": // お気に入り

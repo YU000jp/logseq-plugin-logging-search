@@ -117,7 +117,7 @@ const main = async () => {
   setTimeout(() => {
     // 専用メニューボタンを追加
     AddMenuButton()
-  }, 300)
+  }, 1000)
 
   addLeftMenuSearchForm()
 
