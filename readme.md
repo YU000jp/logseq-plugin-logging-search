@@ -37,8 +37,6 @@ This plugin does not work with Logseq db version.
 
    - Use sidebar toggle to view in sidebar
    - Select from 4 viewing modes
-
-      > ![image](https://github.com/user-attachments/assets/ac903fd7-5cd3-4b0a-97fb-df3a43fc0967)
    - Press Enter
 
 ## 💡 Tips & Help
