@@ -21,8 +21,6 @@ This plugin does not work with Logseq db version.
   - Markdown formatting
   - Properties
   - Embedded content
-  - Mathematical formulas
-- 🔄 Real-time updates
 - ✏️ In-place editing
 
 ## 📌 Getting Started
