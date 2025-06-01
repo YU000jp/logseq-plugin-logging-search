@@ -46,9 +46,6 @@ Query-based search plugin that displays fully rendered results
    - Uses query blocks for better performance
 2. Page search (links)
    - Simple function to list pages with matching titles
-3. Related plugins
-   - [Draft Notes](https://github.com/YU000jp/logseq-plugin-draft-notes)
-   - [Multi Random Note](https://github.com/YU000jp/logseq-plugin-multi-random-note)
 
 ## Questions & Support
 
