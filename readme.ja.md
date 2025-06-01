@@ -48,9 +48,6 @@
    - クエリーブロックで高速化
 2. ページ検索（リンク）
    - キーワードを含むページを一覧表示
-3. 関連プラグイン
-   - [Draft Notes](https://github.com/YU000jp/logseq-plugin-draft-notes)
-   - [Multi Random Note](https://github.com/YU000jp/logseq-plugin-multi-random-note)
 
 ## 質問とサポート
 
