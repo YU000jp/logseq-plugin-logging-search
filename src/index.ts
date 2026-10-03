@@ -1,5 +1,5 @@
 import '@logseq/libs' //https://plugins-doc.logseq.com/
-import { AppGraphInfo, AppInfo, LSPluginBaseInfo } from '@logseq/libs/dist/LSPlugin.user'
+import { AppGraphInfo, LSPluginBaseInfo } from '@logseq/libs/dist/LSPlugin.user'
 import { setup as l10nSetup } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
 import { addLeftMenuSearchForm } from './custom/form'
 import { resetPage } from './custom/page'
@@ -46,9 +46,9 @@ export const keyLeftMenuSearchForm = `${shortKey}--search-form`
 let currentGraphName = "" // 現在のgraph名を保持する
 
 let processingResetForm = false
-let logseqVersion: string = "" //バージョンチェック用
-let logseqVersionMd: boolean = false //バージョンチェック用
-let logseqDbGraph: boolean = false
+let logseqVersion: string = "" //アプリバージョン(情報用のみ。グラフ種別の判定には使わない)
+let logseqVersionMd: boolean = false //現在のグラフがファイルベースか(= !logseqDbGraph)
+let logseqDbGraph: boolean = false //現在のグラフがDBグラフか
 // export const getLogseqVersion = () => logseqVersion //バージョンチェック用
 export const booleanLogseqVersionMd = () => logseqVersionMd //バージョンチェック用
 export const booleanDbGraph = () => logseqDbGraph //バージョンチェック用
@@ -86,10 +86,19 @@ const loadByGraph = async () => {
 /* main */
 const main = async () => {
 
-  // バージョンチェック
-  logseqVersionMd = await checkLogseqVersion()
-  // DBグラフチェック
-  logseqDbGraph = await checkDbGraph()
+  // アプリバージョンを保存(情報用のみ)
+  await fetchAppVersion()
+
+  // 初回起動時はグラフ作成前に検出が走ることがあるため、グラフが用意できるまで短時間待つ
+  await waitGraphReady()
+
+  // 現在のグラフがDBグラフか(検出失敗=API非搭載の旧アプリ=ファイルグラフのみ開ける)
+  const checkId = ++latestCheckId
+  const detectedDbGraph = await checkDbGraph()
+  if (checkId === latestCheckId) {
+    logseqDbGraph = detectedDbGraph ?? false
+    logseqVersionMd = !logseqDbGraph
+  }
 
   // l10nのセットアップ
   await l10nSetup({
@@ -210,7 +219,12 @@ const main = async () => {
   })
 
   logseq.App.onCurrentGraphChanged(async () => {
-    logseqDbGraph = await checkDbGraph()
+    const id = ++latestCheckId
+    const isDb = await checkDbGraph()
+    // 判定不能なら既知のフラグを維持し、より新しい判定が開始されていたら破棄する
+    if (id !== latestCheckId || isDb === null) return
+    logseqDbGraph = isDb
+    logseqVersionMd = !isDb
   })
 }/* end_main */
 
@@ -225,35 +239,41 @@ const resetForm = async () => {
   await addLeftMenuSearchForm()
 }
 
-// MDモデルかどうかのチェック DBモデルはfalse
-const checkLogseqVersion = async (): Promise<boolean> => {
-  const logseqInfo = (await logseq.App.getInfo("version")) as AppInfo | any
-  //  0.11.0もしくは0.11.0-alpha+nightly.20250427のような形式なので、先頭の3つの数値(1桁、2桁、2桁)を正規表現で取得する
-  const version = logseqInfo.match(/(\d+)\.(\d+)\.(\d+)/)
-  if (version) {
-    logseqVersion = version[0] //バージョンを取得
-    // console.log("logseq version: ", logseqVersion)
+// グラフ種別の検出は非同期のため、最新の判定のみがフラグを更新できるようにするガード
+let latestCheckId = 0
 
-    // もし バージョンが0.10.*系やそれ以下ならば、logseqVersionMdをtrueにする
-    if (logseqVersion.match(/0\.([0-9]|10)\.\d+/)) {
-      logseqVersionMd = true
-      // console.log("logseq version is 0.10.* or lower")
-      return true
-    } else logseqVersionMd = false
-  } else logseqVersion = "0.0.0"
-  return false
+// アプリのバージョンを保存(情報用のみ。グラフ種別の判定には使わない)
+const fetchAppVersion = async (): Promise<void> => {
+  const logseqInfo = (await logseq.App.getInfo("version")) as unknown
+  // 0.11.0もしくは0.11.0-alpha+nightly.20250427のような形式なので、先頭の3つの数値(1桁、2桁、2桁)を正規表現で取得する
+  const version = typeof logseqInfo === "string" ? logseqInfo : "0.0.0"
+  const match = version.match(/(\d+)\.(\d+)\.(\d+)/)
+  logseqVersion = match ? match[0] : version
 }
 
-// DBグラフかどうかのチェック DBグラフだけtrue
-const checkDbGraph = async (): Promise<boolean> => {
-  const element = parent.document.querySelector(
-    "div.block-tags",
-  ) as HTMLDivElement | null // ページ内にClassタグが存在する  WARN:: ※DOM変更の可能性に注意
-  if (element) {
-    logseqDbGraph = true
-    return true
-  } else logseqDbGraph = false
-  return false
+// 現在のグラフがDBグラフか。検出失敗時はnullを返す(0.10.xなどAPI非搭載ホスト。
+// logseq.Appは動的プロキシのためtypeofガードは効かず、try/catchで判定する)
+const checkDbGraph = async (): Promise<boolean | null> => {
+  try {
+    const value = await (logseq.App as any).checkCurrentIsDbGraph()
+    return typeof value === "boolean" ? value : null
+  } catch {
+    return null
+  }
+}
+
+// 初回起動時はグラフがまだ作成されていないことがあるため、利用可能になるまで短時間待つ
+const waitGraphReady = async (timeoutMs = 3000): Promise<void> => {
+  try {
+    const start = Date.now()
+    while (Date.now() - start < timeoutMs) {
+      if (await logseq.App.getCurrentGraph())
+        return
+      await new Promise(resolve => setTimeout(resolve, 300))
+    }
+  } catch {
+    // getCurrentGraph非搭載の旧ホストでは即座に抜ける
+  }
 }
 
 logseq.ready(main).catch(console.error)
