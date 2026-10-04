@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/YU000jp/logseq-plugin-logging-search/compare/v1.3.2...v1.3.3) (2026-10-04)
+
+
+### Bug Fixes
+
+* グラフ種別検出を公式APIに置き換え、バージョン判定との混在を解消 ([33d91c1](https://github.com/YU000jp/logseq-plugin-logging-search/commit/33d91c1be2bf19e716302ad0ed0b28ec9addc6b8))
+
 ## [1.3.2](https://github.com/YU000jp/logseq-plugin-logging-search/compare/v1.3.1...v1.3.2) (2025-01-05)
 
 
